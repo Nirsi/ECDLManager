@@ -38,15 +38,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lb_originFileName = new System.Windows.Forms.Label();
             this.bt_loadData = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bt_saveFormatedData = new System.Windows.Forms.Button();
             this.ofd_inputFile = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_testDuration = new System.Windows.Forms.TextBox();
+            this.lb_inputDataStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tb_modulName
             // 
-            this.tb_modulName.Location = new System.Drawing.Point(87, 62);
+            this.tb_modulName.Location = new System.Drawing.Point(147, 113);
             this.tb_modulName.MaxLength = 2;
             this.tb_modulName.Name = "tb_modulName";
             this.tb_modulName.Size = new System.Drawing.Size(188, 20);
@@ -54,26 +55,27 @@
             // 
             // tb_date
             // 
-            this.tb_date.Location = new System.Drawing.Point(87, 115);
+            this.tb_date.Location = new System.Drawing.Point(147, 166);
             this.tb_date.MaxLength = 10;
             this.tb_date.Name = "tb_date";
             this.tb_date.Size = new System.Drawing.Size(188, 20);
-            this.tb_date.TabIndex = 1;
+            this.tb_date.TabIndex = 2;
             // 
             // tb_time
             // 
-            this.tb_time.Location = new System.Drawing.Point(339, 67);
+            this.tb_time.Location = new System.Drawing.Point(399, 118);
             this.tb_time.MaxLength = 5;
             this.tb_time.Name = "tb_time";
             this.tb_time.Size = new System.Drawing.Size(185, 20);
-            this.tb_time.TabIndex = 2;
+            this.tb_time.TabIndex = 1;
             // 
             // tb_filePath
             // 
-            this.tb_filePath.Location = new System.Drawing.Point(157, 11);
+            this.tb_filePath.Location = new System.Drawing.Point(172, 11);
             this.tb_filePath.Name = "tb_filePath";
-            this.tb_filePath.Size = new System.Drawing.Size(473, 20);
-            this.tb_filePath.TabIndex = 3;
+            this.tb_filePath.ReadOnly = true;
+            this.tb_filePath.Size = new System.Drawing.Size(458, 20);
+            this.tb_filePath.TabIndex = 0;
             this.tb_filePath.DoubleClick += new System.EventHandler(this.tb_filePath_DoubleClick);
             this.tb_filePath.MouseEnter += new System.EventHandler(this.tb_filePath_MouseEnter);
             this.tb_filePath.MouseLeave += new System.EventHandler(this.tb_filePath_MouseLeave);
@@ -92,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(8, 58);
+            this.label2.Location = new System.Drawing.Point(68, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 24);
             this.label2.TabIndex = 5;
@@ -102,7 +104,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label3.Location = new System.Drawing.Point(7, 110);
+            this.label3.Location = new System.Drawing.Point(67, 161);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 24);
             this.label3.TabIndex = 6;
@@ -112,7 +114,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label4.Location = new System.Drawing.Point(281, 62);
+            this.label4.Location = new System.Drawing.Point(341, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 24);
             this.label4.TabIndex = 7;
@@ -122,14 +124,16 @@
             // 
             this.lb_originFileName.AutoSize = true;
             this.lb_originFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lb_originFileName.Location = new System.Drawing.Point(232, 273);
+            this.lb_originFileName.Location = new System.Drawing.Point(143, 273);
             this.lb_originFileName.Name = "lb_originFileName";
-            this.lb_originFileName.Size = new System.Drawing.Size(234, 24);
+            this.lb_originFileName.Size = new System.Drawing.Size(377, 24);
             this.lb_originFileName.TabIndex = 8;
-            this.lb_originFileName.Text = "název zdrojového souboru";
+            this.lb_originFileName.Text = "název zdrojového souboru: formatedList.csv";
             // 
             // bt_loadData
             // 
+            this.bt_loadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bt_loadData.ForeColor = System.Drawing.Color.Black;
             this.bt_loadData.Location = new System.Drawing.Point(637, 9);
             this.bt_loadData.Name = "bt_loadData";
             this.bt_loadData.Size = new System.Drawing.Size(75, 23);
@@ -138,16 +142,17 @@
             this.bt_loadData.UseVisualStyleBackColor = true;
             this.bt_loadData.Click += new System.EventHandler(this.bt_loadData_Click);
             // 
-            // button2
+            // bt_saveFormatedData
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.button2.Location = new System.Drawing.Point(267, 331);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(143, 69);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Vygenerovat";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.bt_saveFormatedData.Enabled = false;
+            this.bt_saveFormatedData.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.bt_saveFormatedData.Location = new System.Drawing.Point(267, 331);
+            this.bt_saveFormatedData.Name = "bt_saveFormatedData";
+            this.bt_saveFormatedData.Size = new System.Drawing.Size(143, 69);
+            this.bt_saveFormatedData.TabIndex = 4;
+            this.bt_saveFormatedData.Text = "Vygenerovat";
+            this.bt_saveFormatedData.UseVisualStyleBackColor = true;
+            this.bt_saveFormatedData.Click += new System.EventHandler(this.bt_saveFormatedData_Click);
             // 
             // ofd_inputFile
             // 
@@ -158,7 +163,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label5.Location = new System.Drawing.Point(281, 110);
+            this.label5.Location = new System.Drawing.Point(341, 161);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 24);
             this.label5.TabIndex = 12;
@@ -166,20 +171,32 @@
             // 
             // tb_testDuration
             // 
-            this.tb_testDuration.Location = new System.Drawing.Point(403, 114);
+            this.tb_testDuration.Location = new System.Drawing.Point(463, 165);
             this.tb_testDuration.MaxLength = 2;
             this.tb_testDuration.Name = "tb_testDuration";
             this.tb_testDuration.Size = new System.Drawing.Size(121, 20);
-            this.tb_testDuration.TabIndex = 11;
+            this.tb_testDuration.TabIndex = 3;
+            // 
+            // lb_inputDataStatus
+            // 
+            this.lb_inputDataStatus.AutoSize = true;
+            this.lb_inputDataStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lb_inputDataStatus.ForeColor = System.Drawing.Color.Red;
+            this.lb_inputDataStatus.Location = new System.Drawing.Point(241, 45);
+            this.lb_inputDataStatus.Name = "lb_inputDataStatus";
+            this.lb_inputDataStatus.Size = new System.Drawing.Size(241, 24);
+            this.lb_inputDataStatus.TabIndex = 13;
+            this.lb_inputDataStatus.Text = "Vstuptní data NENAČTENA";
             // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 464);
+            this.Controls.Add(this.lb_inputDataStatus);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tb_testDuration);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.bt_saveFormatedData);
             this.Controls.Add(this.bt_loadData);
             this.Controls.Add(this.lb_originFileName);
             this.Controls.Add(this.label4);
@@ -209,10 +226,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lb_originFileName;
         private System.Windows.Forms.Button bt_loadData;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bt_saveFormatedData;
         private System.Windows.Forms.OpenFileDialog ofd_inputFile;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_testDuration;
+        private System.Windows.Forms.Label lb_inputDataStatus;
     }
 }
 

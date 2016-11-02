@@ -50,6 +50,13 @@ namespace ECDLManager
                     string[] data = line.Split(' ');
                     rawStudents.Add(new rawStudent(data[0], data[1]));
                 }
+
+                (sender as Button).Enabled = false;
+                bt_saveFormatedData.Enabled = true;
+                lb_inputDataStatus.Text = "Vstuptní data NAČTENA";
+                lb_inputDataStatus.ForeColor = Color.Green;
+
+
 #if DEBUG
                 //foreach (var rs in rawStudents)
                 //{
@@ -61,7 +68,7 @@ namespace ECDLManager
             }
         }
 
-        private void GenerateFormatedData()
+        private void GenerateAndSaveFormatedData()
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
 
@@ -72,18 +79,23 @@ namespace ECDLManager
                 MessageBox.Show(fbd.SelectedPath.ToString());
 
 
-
-                using(StreamWriter sw = new StreamWriter(fbd.SelectedPath + @"\formatedList.csv"))
+                //enforcement of ASCII text format
+                using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.ASCII))
                 {
-                    sw.WriteLine("modul;datum;cas;trvani");
+                    //modul,date,time,test duration
+                    sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
                     foreach (rawStudent rs in rawStudents)
                     {
+                        //student's name, student's lastname, exam duration in minutes
                         sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text);
-                        tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
                     }
-                    MessageBox.Show("\n" + tempListContent, "DEBUG : rawStudents list");
                 }
             }
+        }
+
+        private void bt_saveFormatedData_Click(object sender, EventArgs e)
+        {
+            GenerateAndSaveFormatedData();
         }
 
         #region ToolTip metods
@@ -103,12 +115,7 @@ namespace ECDLManager
             originFilePathToolTip.Dispose();
         }
 
+
         #endregion
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            GenerateFormatedData();
-        }
-
     }
 }
