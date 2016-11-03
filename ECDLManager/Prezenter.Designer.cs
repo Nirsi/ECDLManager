@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.lb_examDuration = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lb_examBeginning = new System.Windows.Forms.Label();
+            this.lb_date = new System.Windows.Forms.Label();
+            this.lb_modul = new System.Windows.Forms.Label();
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
+            this.bt_loadFile = new System.Windows.Forms.Button();
+            this.ofd_inputFile = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // lb_examDuration
@@ -47,35 +49,35 @@
             this.lb_examDuration.TabIndex = 20;
             this.lb_examDuration.Text = "Trvání testu: ";
             // 
-            // label4
+            // lb_examBeginning
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label4.Location = new System.Drawing.Point(246, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(220, 37);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Čas zahájení: ";
+            this.lb_examBeginning.AutoSize = true;
+            this.lb_examBeginning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_examBeginning.Location = new System.Drawing.Point(246, 58);
+            this.lb_examBeginning.Name = "lb_examBeginning";
+            this.lb_examBeginning.Size = new System.Drawing.Size(220, 37);
+            this.lb_examBeginning.TabIndex = 19;
+            this.lb_examBeginning.Text = "Čas zahájení: ";
             // 
-            // label3
+            // lb_date
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label3.Location = new System.Drawing.Point(246, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 37);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Datum: ";
+            this.lb_date.AutoSize = true;
+            this.lb_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_date.Location = new System.Drawing.Point(246, 8);
+            this.lb_date.Name = "lb_date";
+            this.lb_date.Size = new System.Drawing.Size(130, 37);
+            this.lb_date.TabIndex = 18;
+            this.lb_date.Text = "Datum: ";
             // 
-            // label2
+            // lb_modul
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 37);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Modul: ";
+            this.lb_modul.AutoSize = true;
+            this.lb_modul.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_modul.Location = new System.Drawing.Point(12, 9);
+            this.lb_modul.Name = "lb_modul";
+            this.lb_modul.Size = new System.Drawing.Size(122, 37);
+            this.lb_modul.TabIndex = 17;
+            this.lb_modul.Text = "Modul: ";
             // 
             // bt_start
             // 
@@ -107,21 +109,37 @@
             this.bt_reset.Text = "Reset";
             this.bt_reset.UseVisualStyleBackColor = true;
             // 
+            // bt_loadFile
+            // 
+            this.bt_loadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bt_loadFile.Location = new System.Drawing.Point(19, 60);
+            this.bt_loadFile.Name = "bt_loadFile";
+            this.bt_loadFile.Size = new System.Drawing.Size(144, 37);
+            this.bt_loadFile.TabIndex = 24;
+            this.bt_loadFile.Text = "Načíst Data";
+            this.bt_loadFile.UseVisualStyleBackColor = true;
+            this.bt_loadFile.Click += new System.EventHandler(this.bt_loadFile_Click);
+            // 
+            // ofd_inputFile
+            // 
+            this.ofd_inputFile.FileName = "formatedList";
+            // 
             // Prezenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 942);
+            this.Controls.Add(this.bt_loadFile);
             this.Controls.Add(this.bt_reset);
             this.Controls.Add(this.bt_stop);
             this.Controls.Add(this.bt_start);
             this.Controls.Add(this.lb_examDuration);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lb_examBeginning);
+            this.Controls.Add(this.lb_date);
+            this.Controls.Add(this.lb_modul);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Name = "Prezenter";
-            this.Text = "Prezenter";
+            this.Text = "SPS Ostrov - ECDL : Prezentér";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,11 +148,13 @@
         #endregion
 
         private System.Windows.Forms.Label lb_examDuration;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lb_examBeginning;
+        private System.Windows.Forms.Label lb_date;
+        private System.Windows.Forms.Label lb_modul;
         private System.Windows.Forms.Button bt_start;
         private System.Windows.Forms.Button bt_stop;
         private System.Windows.Forms.Button bt_reset;
+        private System.Windows.Forms.Button bt_loadFile;
+        private System.Windows.Forms.OpenFileDialog ofd_inputFile;
     }
 }

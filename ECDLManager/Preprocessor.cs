@@ -20,6 +20,8 @@ namespace ECDLManager
         public Preprocessor()
         {
             InitializeComponent();
+            if (Global.I.debugMod)
+                Text = "SPS Debug - ECDL : Preprocessor";
         }
 
         private void tb_filePath_DoubleClick(object sender, EventArgs e)
@@ -41,7 +43,6 @@ namespace ECDLManager
 
         private void bt_loadData_Click(object sender, EventArgs e)
         {
-            string tempListContent = string.Empty;
             using (StreamReader sr = new StreamReader(tb_filePath.Text, Encoding.ASCII))
             {
                 string line;
@@ -82,7 +83,7 @@ namespace ECDLManager
                 //enforcement of ASCII text format
                 using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.ASCII))
                 {
-                    //modul,date,time,test duration
+                    //modul,date,time,exam duration
                     sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
                     foreach (rawStudent rs in rawStudents)
                     {

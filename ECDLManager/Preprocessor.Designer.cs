@@ -126,9 +126,9 @@
             this.lb_originFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lb_originFileName.Location = new System.Drawing.Point(143, 273);
             this.lb_originFileName.Name = "lb_originFileName";
-            this.lb_originFileName.Size = new System.Drawing.Size(377, 24);
+            this.lb_originFileName.Size = new System.Drawing.Size(373, 24);
             this.lb_originFileName.TabIndex = 8;
-            this.lb_originFileName.Text = "název zdrojového souboru: formatedList.csv";
+            this.lb_originFileName.Text = "název výstupního souboru: formatedList.csv";
             // 
             // bt_loadData
             // 
@@ -208,7 +208,7 @@
             this.Controls.Add(this.tb_date);
             this.Controls.Add(this.tb_modulName);
             this.Name = "Preprocessor";
-            this.Text = "Preprocessor";
+            this.Text = "SPS Ostrov - ECDL : Preprocessor";
             this.ResumeLayout(false);
             this.PerformLayout();
 

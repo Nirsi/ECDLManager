@@ -29,8 +29,25 @@ namespace ECDLManager
             Form prez = new Prezenter();
             prez.Show();
             WindowState = FormWindowState.Minimized;
+            
         }
 
-        
+        private void chb_debugOnOff_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!Global.I.debugMod)
+            {
+                Global.I.debugMod = true;
+                chb_debugOnOff.ForeColor = Color.Green;
+                chb_debugOnOff.Text = "Režim DEBUG je zapnut";
+                Text = "SPS Debug - ECDL";
+            }
+            else
+            {
+                Global.I.debugMod = false;
+                chb_debugOnOff.ForeColor = Color.Red;
+                chb_debugOnOff.Text = "Režim DEBUG je vypnut";
+                Text = "SPS Ostrov - ECDL";
+            }
+        }
     }
 }
