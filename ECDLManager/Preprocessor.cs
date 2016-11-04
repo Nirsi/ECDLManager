@@ -43,7 +43,7 @@ namespace ECDLManager
 
         private void bt_loadData_Click(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader(tb_filePath.Text, Encoding.ASCII))
+            using (StreamReader sr = new StreamReader(tb_filePath.Text, Encoding.Default))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
@@ -58,14 +58,15 @@ namespace ECDLManager
                 lb_inputDataStatus.ForeColor = Color.Green;
 
 
-#if DEBUG
-                //foreach (var rs in rawStudents)
-                //{
-                //    tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
-                //}
+                if(Global.I.debugMod)
+                {
+                    foreach (var rs in rawStudents)
+                    {
+                        tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
+                    }
 
-                //MessageBox.Show("\n" + tempListContent,"DEBUG : rawStudents list");
-#endif
+                    MessageBox.Show("\n" + tempListContent, "DEBUG : rawStudents list");
+                }
             }
         }
 
@@ -80,8 +81,7 @@ namespace ECDLManager
                 MessageBox.Show(fbd.SelectedPath.ToString());
 
 
-                //enforcement of ASCII text format
-                using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.ASCII))
+                using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
                 {
                     //modul,date,time,exam duration
                     sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);

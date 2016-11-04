@@ -29,7 +29,7 @@ namespace ECDLManager
             filePath = getFilePath();
 
             //Error : if file selector is closed exceptio <Prázdná cesta není platná> will be throwed;
-            using (StreamReader sr = new StreamReader(filePath, Encoding.ASCII))
+            using (StreamReader sr = new StreamReader(filePath, Encoding.Default))
             {
                 string line;
                 line = sr.ReadLine();
@@ -62,14 +62,15 @@ namespace ECDLManager
                     MessageBox.Show(tempListContent, "|DEBUG| : formated students");
                 }
 
-                StudentsLinesGenerator();
+                GenerateCresOfStudents();
 
             }
         }
 
         int initialTop = 300;
         int initialLeft = 100;
-        private void StudentsLinesGenerator()
+        #region Generators
+        private void GenerateCresOfStudents()
         {
             for (int i = 0; i < formatedStudents.Count; i++)
             {
@@ -85,6 +86,22 @@ namespace ECDLManager
             }
         }
 
+        private void GenerateTimeOfStudents()
+        {
+            for (int i = 0; i < formatedStudents.Count; i++)
+            {
+                Label l = new Label();
+                l.Left = initialLeft + 300;
+                l.Top = initialTop;
+                l.Font = new Font("Arial", 20.0f, FontStyle.Regular);
+                l.Height = 35;
+                l.Width = 300;
+                l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
+                Controls.Add(l);
+                initialTop += l.Height + 4;
+            }
+        }
+        #endregion
         private string getFilePath()
         {
             try
