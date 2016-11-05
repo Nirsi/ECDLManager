@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lb_examDuration = new System.Windows.Forms.Label();
             this.lb_examBeginning = new System.Windows.Forms.Label();
             this.lb_date = new System.Windows.Forms.Label();
@@ -37,84 +38,88 @@
             this.bt_reset = new System.Windows.Forms.Button();
             this.bt_loadFile = new System.Windows.Forms.Button();
             this.ofd_inputFile = new System.Windows.Forms.OpenFileDialog();
+            this.tmr_seconds = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lb_examDuration
             // 
             this.lb_examDuration.AutoSize = true;
-            this.lb_examDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lb_examDuration.Font = new System.Drawing.Font("Consolas", 24F);
             this.lb_examDuration.Location = new System.Drawing.Point(590, 114);
             this.lb_examDuration.Name = "lb_examDuration";
-            this.lb_examDuration.Size = new System.Drawing.Size(202, 37);
+            this.lb_examDuration.Size = new System.Drawing.Size(269, 37);
             this.lb_examDuration.TabIndex = 20;
             this.lb_examDuration.Text = "Trvání testu: ";
             // 
             // lb_examBeginning
             // 
             this.lb_examBeginning.AutoSize = true;
-            this.lb_examBeginning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_examBeginning.Font = new System.Drawing.Font("Consolas", 24F);
             this.lb_examBeginning.Location = new System.Drawing.Point(246, 58);
             this.lb_examBeginning.Name = "lb_examBeginning";
-            this.lb_examBeginning.Size = new System.Drawing.Size(220, 37);
+            this.lb_examBeginning.Size = new System.Drawing.Size(269, 37);
             this.lb_examBeginning.TabIndex = 19;
             this.lb_examBeginning.Text = "Čas zahájení: ";
             // 
             // lb_date
             // 
             this.lb_date.AutoSize = true;
-            this.lb_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_date.Font = new System.Drawing.Font("Consolas", 24F);
             this.lb_date.Location = new System.Drawing.Point(246, 8);
             this.lb_date.Name = "lb_date";
-            this.lb_date.Size = new System.Drawing.Size(130, 37);
+            this.lb_date.Size = new System.Drawing.Size(143, 37);
             this.lb_date.TabIndex = 18;
             this.lb_date.Text = "Datum: ";
             // 
             // lb_modul
             // 
             this.lb_modul.AutoSize = true;
-            this.lb_modul.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lb_modul.Font = new System.Drawing.Font("Consolas", 24F);
             this.lb_modul.Location = new System.Drawing.Point(12, 9);
             this.lb_modul.Name = "lb_modul";
-            this.lb_modul.Size = new System.Drawing.Size(122, 37);
+            this.lb_modul.Size = new System.Drawing.Size(143, 37);
             this.lb_modul.TabIndex = 17;
             this.lb_modul.Text = "Modul: ";
             // 
             // bt_start
             // 
-            this.bt_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.bt_start.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_start.Location = new System.Drawing.Point(896, 12);
             this.bt_start.Name = "bt_start";
             this.bt_start.Size = new System.Drawing.Size(151, 47);
             this.bt_start.TabIndex = 21;
             this.bt_start.Text = "Start";
             this.bt_start.UseVisualStyleBackColor = true;
+            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
             // bt_stop
             // 
-            this.bt_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.bt_stop.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_stop.Location = new System.Drawing.Point(986, 93);
             this.bt_stop.Name = "bt_stop";
             this.bt_stop.Size = new System.Drawing.Size(151, 47);
             this.bt_stop.TabIndex = 22;
             this.bt_stop.Text = "Stop";
             this.bt_stop.UseVisualStyleBackColor = true;
+            this.bt_stop.Click += new System.EventHandler(this.bt_stop_Click);
             // 
             // bt_reset
             // 
-            this.bt_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.bt_reset.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_reset.Location = new System.Drawing.Point(863, 188);
             this.bt_reset.Name = "bt_reset";
             this.bt_reset.Size = new System.Drawing.Size(151, 47);
             this.bt_reset.TabIndex = 23;
             this.bt_reset.Text = "Reset";
             this.bt_reset.UseVisualStyleBackColor = true;
+            this.bt_reset.Click += new System.EventHandler(this.bt_reset_Click);
             // 
             // bt_loadFile
             // 
-            this.bt_loadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bt_loadFile.Location = new System.Drawing.Point(19, 60);
+            this.bt_loadFile.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bt_loadFile.Location = new System.Drawing.Point(12, 58);
             this.bt_loadFile.Name = "bt_loadFile";
-            this.bt_loadFile.Size = new System.Drawing.Size(144, 37);
+            this.bt_loadFile.Size = new System.Drawing.Size(198, 37);
             this.bt_loadFile.TabIndex = 24;
             this.bt_loadFile.Text = "Načíst Data";
             this.bt_loadFile.UseVisualStyleBackColor = true;
@@ -123,6 +128,11 @@
             // ofd_inputFile
             // 
             this.ofd_inputFile.FileName = "formatedList";
+            // 
+            // tmr_seconds
+            // 
+            this.tmr_seconds.Interval = 1000;
+            this.tmr_seconds.Tick += new System.EventHandler(this.tmr_seconds_Tick);
             // 
             // Prezenter
             // 
@@ -156,5 +166,6 @@
         private System.Windows.Forms.Button bt_reset;
         private System.Windows.Forms.Button bt_loadFile;
         private System.Windows.Forms.OpenFileDialog ofd_inputFile;
+        private System.Windows.Forms.Timer tmr_seconds;
     }
 }

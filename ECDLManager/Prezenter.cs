@@ -22,8 +22,15 @@ namespace ECDLManager
 
         private string tempListContent = string.Empty;
         private string filePath = string.Empty;
-        private List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
 
+        private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
+        private List<Label> timeLabelsRefences = new List<Label>();
+        private List<Button> startButtonReferences = new List<Button>();
+        private List<Button> stopButtonReferences = new List<Button>();
+
+        private TimeManager tm;
+
+        
         private void bt_loadFile_Click(object sender, EventArgs e)
         {
             filePath = getFilePath();
@@ -49,7 +56,7 @@ namespace ECDLManager
                     //rawStudents.Add(new rawStudent(data[0], data[1]));
                     formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2])));
                 }
-
+                tm = new TimeManager(formatedStudents);
                 (sender as Button).Enabled = false;
                 //(sender as Button).Visible = false;
 
@@ -62,7 +69,8 @@ namespace ECDLManager
                     MessageBox.Show(tempListContent, "|DEBUG| : formated students");
                 }
 
-                GenerateCresOfStudents();
+                GenerateNamesOfStudents();
+                GenerateTimeOfStudents();
 
             }
         }
@@ -70,37 +78,88 @@ namespace ECDLManager
         int initialTop = 300;
         int initialLeft = 100;
         #region Generators
-        private void GenerateCresOfStudents()
+        private void GenerateNamesOfStudents()
         {
             for (int i = 0; i < formatedStudents.Count; i++)
             {
                 Label l = new Label();
                 l.Left = initialLeft;
                 l.Top = initialTop;
-                l.Font = new Font("Arial", 20.0f, FontStyle.Regular);
+                l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 300;
                 l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
                 Controls.Add(l);
                 initialTop += l.Height + 4;
             }
+            initialTop = 300;
         }
 
         private void GenerateTimeOfStudents()
         {
-            for (int i = 0; i < formatedStudents.Count; i++)
+            for (int i = 0; i < tm.times.Count; i++)
             {
                 Label l = new Label();
-                l.Left = initialLeft + 300;
+                l.Left = initialLeft + 325;
                 l.Top = initialTop;
-                l.Font = new Font("Arial", 20.0f, FontStyle.Regular);
+                l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 300;
-                l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
-                Controls.Add(l);
+                l.Text = tm.times[i].GetFormatedTime();
+                timeLabelsRefences.Add(l);
                 initialTop += l.Height + 4;
             }
+            initialTop = 300;
+            foreach (var l in timeLabelsRefences)
+            {
+                Controls.Add(l);
+            }
         }
+
+        private void GenerateButtons()
+        {
+            //start buttons
+            for (int i = 0; i < tm.times.Count; i++)
+            {
+
+                Button b = new Button();
+                b.Left = initialLeft + 325;
+                b.Top = initialTop;
+                b.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
+                b.Height = 35;
+                b.Width = 300;
+                b.Text = tm.times[i].GetFormatedTime();
+                startButtonReferences.Add(b);
+                initialTop += b.Height + 4;
+            }
+            foreach (var b in startButtonReferences)
+            {
+                Controls.Add(b);
+            }
+            initialTop = 300;
+
+
+            //stop buttons
+            for (int i = 0; i < tm.times.Count; i++)
+            {
+
+                Label l = new Label();
+                l.Left = initialLeft + 325;
+                l.Top = initialTop;
+                l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
+                l.Height = 35;
+                l.Width = 300;
+                l.Text = tm.times[i].GetFormatedTime();
+                timeLabelsRefences.Add(l);
+                initialTop += l.Height + 4;
+            }
+            foreach (var l in timeLabelsRefences)
+            {
+                Controls.Add(l);
+            }
+            initialTop = 300;
+        }
+
         #endregion
         private string getFilePath()
         {
@@ -118,6 +177,30 @@ namespace ECDLManager
                 return string.Empty;
             }
             return string.Empty;
+        }
+
+        private void tmr_seconds_Tick(object sender, EventArgs e)
+        {
+            tm.CountDown();
+            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            {
+                timeLabelsRefences[i].Text = tm.times[i].GetFormatedTime();
+            }
+        }
+
+        private void bt_start_Click(object sender, EventArgs e)
+        {
+            tmr_seconds.Start();
+        }
+
+        private void bt_stop_Click(object sender, EventArgs e)
+        {
+            tmr_seconds.Stop();
+        }
+
+        private void bt_reset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
