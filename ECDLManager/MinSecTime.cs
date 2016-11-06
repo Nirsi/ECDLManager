@@ -12,10 +12,13 @@ namespace ECDLManager
         internal int sec { get; private set; }
         internal bool isCountable;
 
+        private int initialTime;
+
 
         internal MinSecTime(int min)
         {
             this.min = min;
+            initialTime = min;
             sec = 0;
             isCountable = true;
             
@@ -35,7 +38,13 @@ namespace ECDLManager
                     sec--;
             }
         }
-        
+
+        internal void Reset()
+        {
+            min = initialTime;
+            sec = 0;
+        }
+
         internal string GetFormatedTime()
         {
             string minZero = string.Empty, secZero = string.Empty;
@@ -46,5 +55,6 @@ namespace ECDLManager
             return minZero + min + ":"+ secZero + sec;
             
         }
+        
     }
 }

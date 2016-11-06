@@ -27,5 +27,13 @@ namespace ECDLManager
             }
         }
 
+        internal void ResetAllTimes()
+        {
+            foreach (var mst in times)
+            {
+                mst.Reset();
+            }
+        }
+
     }
 }

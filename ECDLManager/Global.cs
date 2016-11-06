@@ -28,63 +28,118 @@ namespace ECDLManager
 
         #endregion
 
-        public Dictionary<string, int> wordToNumber;
-        public Dictionary<int, string> numberToWord;
+        public Dictionary<string, int> wordToNumberContinue;
+        public Dictionary<int, string> numberToWordContinue;
+
+        public Dictionary<string, int> wordToNumberPause;
+        public Dictionary<int, string> numberToWordPause;
 
         public bool debugMod = false;
 
         #region Translative Dictionary creation
 
-        public void GenerateWTN()
+        //Continue 1/2
+        public void GenerateWTNC()
         {
-            wordToNumber = new Dictionary<string, int>()
+            wordToNumberContinue = new Dictionary<string, int>()
             {
-                {"zero", 0 },
-                {"one", 1 },
-                {"two", 2 },
-                {"three", 3 },
-                {"four", 4 },
-                {"five", 5 },
-                {"six", 6 },
-                {"seven", 7 },
-                {"eight", 8 },
-                {"nine", 9 },
-                {"ten", 10 },
-                {"eleven", 11 },
-                {"twelve", 12 },
-                {"thriteen", 13 },
-                {"fourteen", 14 },
-                {"fifteen", 15 }
+                {"zeroS", 0 },
+                {"oneS", 1 },
+                {"twoS", 2 },
+                {"threeS", 3 },
+                {"fourS", 4 },
+                {"fiveS", 5 },
+                {"sixS", 6 },
+                {"sevenS", 7 },
+                {"eightS", 8 },
+                {"nineS", 9 },
+                {"tenS", 10 },
+                {"elevenS", 11 },
+                {"twelveS", 12 },
+                {"thriteenS", 13 },
+                {"fourteenS", 14 },
+                {"fifteenS", 15 }
 
             };
 
         }
-
-        public void GenerateNTW()
+        //Continue 2/2
+        public void GenerateNTWC()
         {
-            numberToWord = new Dictionary<int, string>()
+            numberToWordContinue = new Dictionary<int, string>()
             {
-                {0, "zero"},
-                {1, "one"},
-                {2, "two"},
-                {3, "three"},
-                {4, "four"},
-                {5, "five"},
-                {6, "six"},
-                {7, "seven"},
-                {8, "eight"},
-                {9, "nine"},
-                {10, "ten"},
-                {11, "eleven"},
-                {12, "twelve"},
-                {13, "thriteen"},
-                {14, "fourteen"},
-                {15, "fifteen"}
+                {0, "zeroS"},
+                {1, "oneS"},
+                {2, "twoS"},
+                {3, "threeS"},
+                {4, "fourS"},
+                {5, "fiveS"},
+                {6, "sixS"},
+                {7, "sevenS"},
+                {8, "eightS"},
+                {9, "nineS"},
+                {10, "tenS"},
+                {11, "elevenS"},
+                {12, "twelveS"},
+                {13, "thriteenS"},
+                {14, "fourteenS"},
+                {15, "fifteenS"}
 
             };
         }
 
 
+        //Pause 1/2
+        public void GenerateWTNP()
+        {
+            wordToNumberPause = new Dictionary<string, int>()
+            {
+                {"zeroP", 0 },
+                {"oneP", 1 },
+                {"twoP", 2 },
+                {"threeP", 3 },
+                {"fourP", 4 },
+                {"fiveP", 5 },
+                {"sixP", 6 },
+                {"sevenP", 7 },
+                {"eightP", 8 },
+                {"nineP", 9 },
+                {"tenP", 10 },
+                {"elevenP", 11 },
+                {"twelveP", 12 },
+                {"thriteenP", 13 },
+                {"fourteenP", 14 },
+                {"fifteenP", 15 }
+
+            };
+
+        }
+        //Pause 2/2
+        public void GenerateNTWP()
+        {
+            numberToWordPause = new Dictionary<int, string>()
+            {
+                {0, "zeroP"},
+                {1, "oneP"},
+                {2, "twoP"},
+                {3, "threeP"},
+                {4, "fourP"},
+                {5, "fiveP"},
+                {6, "sixP"},
+                {7, "sevenP"},
+                {8, "eightP"},
+                {9, "nineP"},
+                {10, "tenP"},
+                {11, "elevenP"},
+                {12, "twelveP"},
+                {13, "thriteenP"},
+                {14, "fourteenP"},
+                {15, "fifteenP"}
+
+            };
+        }
+
+        
         #endregion
     }
 }

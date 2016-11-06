@@ -28,8 +28,14 @@ namespace ECDLManager
         {
             Form prez = new Prezenter();
             prez.Show();
-            Global.I.GenerateNTW();
-            Global.I.GenerateWTN();
+
+            //Starts generators
+            Global.I.GenerateNTWC();
+            Global.I.GenerateWTNC();
+            //Stops generators
+            Global.I.GenerateNTWP();
+            Global.I.GenerateWTNP();
+
             WindowState = FormWindowState.Minimized;
             
         }

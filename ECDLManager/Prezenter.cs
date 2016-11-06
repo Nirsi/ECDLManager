@@ -25,8 +25,8 @@ namespace ECDLManager
 
         private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
         private List<Label> timeLabelsRefences = new List<Label>();
-        private List<Button> startButtonReferences = new List<Button>();
-        private List<Button> stopButtonReferences = new List<Button>();
+        private List<Button> continueButtonReferences = new List<Button>();
+        private List<Button> pauseButtonReferences = new List<Button>();
 
         private TimeManager tm;
 
@@ -71,13 +71,34 @@ namespace ECDLManager
 
                 GenerateNamesOfStudents();
                 GenerateTimeOfStudents();
+                GenerateButtons();
 
             }
         }
 
+        private string getFilePath()
+        {
+            try
+            {
+                DialogResult result = ofd_inputFile.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    return ofd_inputFile.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return string.Empty;
+            }
+            return string.Empty;
+        }
+        
+        #region Generators
+
         int initialTop = 300;
         int initialLeft = 100;
-        #region Generators
+
         private void GenerateNamesOfStudents()
         {
             for (int i = 0; i < formatedStudents.Count; i++)
@@ -104,7 +125,7 @@ namespace ECDLManager
                 l.Top = initialTop;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
-                l.Width = 300;
+                l.Width = 80;
                 l.Text = tm.times[i].GetFormatedTime();
                 timeLabelsRefences.Add(l);
                 initialTop += l.Height + 4;
@@ -123,16 +144,18 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = initialLeft + 325;
+                b.Left = initialLeft + 570;
                 b.Top = initialTop;
-                b.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
+                b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 35;
-                b.Width = 300;
-                b.Text = tm.times[i].GetFormatedTime();
-                startButtonReferences.Add(b);
+                b.Width = 175;
+                b.Text = "Pokračovat";
+                b.Click += new EventHandler(dynBt_continue);
+                b.Name = Global.I.numberToWordContinue[i];
+                continueButtonReferences.Add(b);
                 initialTop += b.Height + 4;
             }
-            foreach (var b in startButtonReferences)
+            foreach (var b in continueButtonReferences)
             {
                 Controls.Add(b);
             }
@@ -143,41 +166,28 @@ namespace ECDLManager
             for (int i = 0; i < tm.times.Count; i++)
             {
 
-                Label l = new Label();
-                l.Left = initialLeft + 325;
-                l.Top = initialTop;
-                l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
-                l.Height = 35;
-                l.Width = 300;
-                l.Text = tm.times[i].GetFormatedTime();
-                timeLabelsRefences.Add(l);
-                initialTop += l.Height + 4;
+                Button b = new Button();
+                b.Left = initialLeft + 800;
+                b.Top = initialTop;
+                b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
+                b.Height = 35;
+                b.Width = 125;
+                b.Text = "Pauza";
+                b.Click += new EventHandler(dynBt_pause);
+                b.Name = Global.I.numberToWordPause[i];
+                pauseButtonReferences.Add(b);
+                initialTop += b.Height + 4;
             }
-            foreach (var l in timeLabelsRefences)
+            foreach (var b in pauseButtonReferences)
             {
-                Controls.Add(l);
+                Controls.Add(b);
             }
             initialTop = 300;
         }
 
         #endregion
-        private string getFilePath()
-        {
-            try
-            {
-                DialogResult result = ofd_inputFile.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    return ofd_inputFile.FileName;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return string.Empty;
-            }
-            return string.Empty;
-        }
+
+        #region event handlers
 
         private void tmr_seconds_Tick(object sender, EventArgs e)
         {
@@ -200,7 +210,18 @@ namespace ECDLManager
 
         private void bt_reset_Click(object sender, EventArgs e)
         {
-
+            tm.ResetAllTimes();
         }
+
+        private void dynBt_continue(object sender, EventArgs e)
+        {
+            MessageBox.Show("Continue button pressed");
+        }
+        private void dynBt_pause(object sender, EventArgs e)
+        {
+            MessageBox.Show("Pause button pressed");
+        }
+
+        #endregion
     }
 }
