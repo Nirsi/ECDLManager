@@ -32,6 +32,11 @@ namespace ECDLManager
                 if (result == DialogResult.OK)
                 {
                     tb_filePath.Text = ofd_inputFile.FileName;
+                    bt_loadData.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("nebyla vybrána žádná cesta k souboru");
                 }
             }
             catch (Exception ex)

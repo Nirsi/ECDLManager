@@ -128,6 +128,7 @@
             // ofd_inputFile
             // 
             this.ofd_inputFile.FileName = "formatedList";
+            this.ofd_inputFile.Filter = "CSV|*.csv";
             // 
             // tmr_seconds
             // 

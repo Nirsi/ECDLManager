@@ -132,6 +132,7 @@
             // 
             // bt_loadData
             // 
+            this.bt_loadData.Enabled = false;
             this.bt_loadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bt_loadData.ForeColor = System.Drawing.Color.Black;
             this.bt_loadData.Location = new System.Drawing.Point(637, 9);

@@ -35,44 +35,51 @@ namespace ECDLManager
         {
             filePath = getFilePath();
 
-            //Error : if file selector is closed exceptio <Prázdná cesta není platná> will be throwed;
-            using (StreamReader sr = new StreamReader(filePath, Encoding.Default))
+            if (!(filePath == "#null"))
             {
-                string line;
-                line = sr.ReadLine();
-                //modul,date,time of beginning,exam duration
-                string[] _data = line.Split(';');
-
-                lb_modul.Text = "Modul: " + _data[0];
-                lb_date.Text = "Datum: " + _data[1];
-                lb_examBeginning.Text = "Čas zahájení: " + _data[2];
-                lb_examDuration.Text = "Trvání testu: " + _data[3] + " minut";
-
-
-
-                while ((line = sr.ReadLine()) != null)
+                //Error : if file selector is closed exceptio <Prázdná cesta není platná> will be throwed;
+                using (StreamReader sr = new StreamReader(filePath, Encoding.Default))
                 {
-                    string[] data = line.Split(';');
-                    //rawStudents.Add(new rawStudent(data[0], data[1]));
-                    formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2])));
-                }
-                tm = new TimeManager(formatedStudents);
-                (sender as Button).Enabled = false;
-                //(sender as Button).Visible = false;
+                    string line;
+                    line = sr.ReadLine();
+                    //modul,date,time of beginning,exam duration
+                    string[] _data = line.Split(';');
 
-                if (Global.I.debugMod)
-                {
-                    foreach (var item in formatedStudents)
+                    lb_modul.Text = "Modul: " + _data[0];
+                    lb_date.Text = "Datum: " + _data[1];
+                    lb_examBeginning.Text = "Čas zahájení: " + _data[2];
+                    lb_examDuration.Text = "Trvání testu: " + _data[3] + " minut";
+
+
+
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        tempListContent += "||| Student name: " + item.name + " student lastname: " + item.lastname + " student exam-span: " + item.examDuration + " |||";
+                        string[] data = line.Split(';');
+                        //rawStudents.Add(new rawStudent(data[0], data[1]));
+                        formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2])));
                     }
-                    MessageBox.Show(tempListContent, "|DEBUG| : formated students");
-                }
+                    tm = new TimeManager(formatedStudents);
+                    (sender as Button).Enabled = false;
+                    //(sender as Button).Visible = false;
 
-                GenerateNamesOfStudents();
-                GenerateTimeOfStudents();
-                GenerateButtons();
+                    if (Global.I.debugMod)
+                    {
+                        foreach (var item in formatedStudents)
+                        {
+                            tempListContent += "||| Student name: " + item.name + " student lastname: " + item.lastname + " student exam-span: " + item.examDuration + " |||";
+                        }
+                        MessageBox.Show(tempListContent, "|DEBUG| : formated students");
+                    }
 
+                    GenerateNamesOfStudents();
+                    GenerateTimeOfStudents();
+                    GenerateButtons();
+
+                } 
+            }
+            else
+            {
+                MessageBox.Show("Nebyl vybrán žádný vstupní soubor!","Upoźornění",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
 
@@ -85,13 +92,14 @@ namespace ECDLManager
                 {
                     return ofd_inputFile.FileName;
                 }
+                else
+                    return "#null";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 return string.Empty;
             }
-            return string.Empty;
         }
         
         #region Generators
