@@ -35,6 +35,10 @@ namespace ECDLManager
             //Stops generators
             Global.I.GenerateNTWP();
             Global.I.GenerateWTNP();
+            //Labels Generators
+            Global.I.GenerateNTWL();
+            Global.I.GenerateWTNL();
+            
 
             WindowState = FormWindowState.Minimized;
             

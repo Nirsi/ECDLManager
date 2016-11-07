@@ -45,7 +45,7 @@
             // 
             this.lb_examDuration.AutoSize = true;
             this.lb_examDuration.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_examDuration.Location = new System.Drawing.Point(590, 114);
+            this.lb_examDuration.Location = new System.Drawing.Point(539, 113);
             this.lb_examDuration.Name = "lb_examDuration";
             this.lb_examDuration.Size = new System.Drawing.Size(269, 37);
             this.lb_examDuration.TabIndex = 20;

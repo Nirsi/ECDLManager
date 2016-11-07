@@ -34,6 +34,9 @@ namespace ECDLManager
         public Dictionary<string, int> wordToNumberPause;
         public Dictionary<int, string> numberToWordPause;
 
+        public Dictionary<string, int> wordToNumberLabel;
+        public Dictionary<int, string> numberToWordLabel;
+
         public bool debugMod = false;
 
         #region Translative Dictionary creation
@@ -88,7 +91,6 @@ namespace ECDLManager
             };
         }
 
-
         //Pause 1/2
         public void GenerateWTNP()
         {
@@ -139,7 +141,56 @@ namespace ECDLManager
             };
         }
 
-        
+        //Labels 1/2
+        public void GenerateWTNL()
+        {
+            wordToNumberLabel = new Dictionary<string, int>()
+            {
+                {"zeroL", 0 },
+                {"oneL", 1 },
+                {"twoL", 2 },
+                {"threeL", 3 },
+                {"fourL", 4 },
+                {"fiveL", 5 },
+                {"sixL", 6 },
+                {"sevenL", 7 },
+                {"eightL", 8 },
+                {"nineL", 9 },
+                {"tenL", 10 },
+                {"elevenL", 11 },
+                {"twelveL", 12 },
+                {"thriteenL", 13 },
+                {"fourteenL", 14 },
+                {"fifteenL", 15 }
+
+            };
+        }
+        //Labels 2/2
+        public void GenerateNTWL()
+        {
+            numberToWordLabel = new Dictionary<int, string>()
+            {
+                {0, "zeroL"},
+                {1, "oneL"},
+                {2, "twoL"},
+                {3, "threeL"},
+                {4, "fourL"},
+                {5, "fiveL"},
+                {6, "sixL"},
+                {7, "sevenL"},
+                {8, "eightL"},
+                {9, "nineL"},
+                {10, "tenL"},
+                {11, "elevenL"},
+                {12, "twelveL"},
+                {13, "thriteenL"},
+                {14, "fourteenL"},
+                {15, "fifteenL"}
+
+            };
+        }
+
+
         #endregion
     }
 }

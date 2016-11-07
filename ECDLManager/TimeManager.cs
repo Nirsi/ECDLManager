@@ -27,6 +27,16 @@ namespace ECDLManager
             }
         }
 
+        internal void PauseTimer(int index)
+        {
+            times[index].Stop();
+        }
+
+        internal void RestoreTimer(int index)
+        {
+            times[index].Continue();
+        }
+
         internal void ResetAllTimes()
         {
             foreach (var mst in times)

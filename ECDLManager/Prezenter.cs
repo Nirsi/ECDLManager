@@ -125,8 +125,9 @@ namespace ECDLManager
                 l.Top = initialTop;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
-                l.Width = 80;
+                l.Width = 100;
                 l.Text = tm.times[i].GetFormatedTime();
+                l.Name = Global.I.numberToWordLabel[i];
                 timeLabelsRefences.Add(l);
                 initialTop += l.Height + 4;
             }
@@ -215,11 +216,27 @@ namespace ECDLManager
 
         private void dynBt_continue(object sender, EventArgs e)
         {
-            MessageBox.Show("Continue button pressed");
+            Button bt = (Button)sender;
+            string searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberContinue[bt.Name]];
+
+            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            {
+                if (timeLabelsRefences[i].Name == searchedlabelsName)
+                    tm.RestoreTimer(i);
+            }
+          
         }
         private void dynBt_pause(object sender, EventArgs e)
         {
-            MessageBox.Show("Pause button pressed");
+
+            Button bt = (Button)sender;
+            string searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberPause[bt.Name]];
+
+            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            {
+                if(timeLabelsRefences[i].Name == searchedlabelsName)
+                    tm.PauseTimer(i);
+            }
         }
 
         #endregion

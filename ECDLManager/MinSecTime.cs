@@ -26,8 +26,7 @@ namespace ECDLManager
 
         internal void CountDown()
         {
-            //true for testing
-            if (true)
+            if (isCountable)
             {
                 if ((sec - 1) < 0)
                 {
@@ -37,6 +36,16 @@ namespace ECDLManager
                 else
                     sec--;
             }
+        }
+
+        internal void Stop()
+        {
+            isCountable = false;
+        }
+
+        internal void Continue()
+        {
+            isCountable = true;
         }
 
         internal void Reset()
