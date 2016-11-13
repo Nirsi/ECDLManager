@@ -1,2 +1,2 @@
 # ECDLManager
-Time namager for ECDL tests
+Time namager for ECDL exams

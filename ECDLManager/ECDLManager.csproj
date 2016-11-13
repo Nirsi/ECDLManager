@@ -54,6 +54,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutInfo.Designer.cs">
+      <DependentUpon>AboutInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,24 +75,27 @@
     <Compile Include="Preprocessor.Designer.cs">
       <DependentUpon>Preprocessor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Prezenter.cs">
+    <Compile Include="Presenter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Prezenter.Designer.cs">
-      <DependentUpon>Prezenter.cs</DependentUpon>
+    <Compile Include="Presenter.Designer.cs">
+      <DependentUpon>Presenter.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rawStudent.cs" />
     <Compile Include="TimeManager.cs" />
+    <EmbeddedResource Include="AboutInfo.resx">
+      <DependentUpon>AboutInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Entry.resx">
       <DependentUpon>Entry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preprocessor.resx">
       <DependentUpon>Preprocessor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prezenter.resx">
-      <DependentUpon>Prezenter.cs</DependentUpon>
+    <EmbeddedResource Include="Presenter.resx">
+      <DependentUpon>Presenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

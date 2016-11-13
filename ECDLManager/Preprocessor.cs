@@ -21,7 +21,7 @@ namespace ECDLManager
         {
             InitializeComponent();
             if (Global.I.debugMod)
-                Text = "SPS Debug - ECDL : Preprocessor";
+                Text = "ECDL Generátor - DEBUG";
         }
 
         private void tb_filePath_DoubleClick(object sender, EventArgs e)
@@ -83,9 +83,6 @@ namespace ECDLManager
 
             if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                MessageBox.Show(fbd.SelectedPath.ToString());
-
-
                 using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
                 {
                     //modul,date,time,exam duration
@@ -123,5 +120,11 @@ namespace ECDLManager
 
 
         #endregion
+
+        private void lb_about_Click(object sender, EventArgs e)
+        {
+            Form about = new AboutInfo();
+            about.Show();
+        }
     }
 }

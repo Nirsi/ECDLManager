@@ -28,7 +28,9 @@ C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECD
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.csprojResolveAssemblyReference.cache
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Entry.resources
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Preprocessor.resources
-C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Prezenter.resources
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Properties.Resources.resources
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.csproj.GenerateResource.Cache
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+H:\Dokumenty\Visual Studio 2013\Projects\ECDLManager\ECDLManager\obj\Debug\ECDLManager.AboutInfo.resources
+C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.AboutInfo.resources
+C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Presenter.resources

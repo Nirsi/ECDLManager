@@ -26,8 +26,9 @@ namespace ECDLManager
 
         private void bt_startTest_Click(object sender, EventArgs e)
         {
-            Form prez = new Prezenter();
-            prez.Show();
+
+            Form pres = new Presenter();
+            pres.Show();
 
             //Starts generators
             Global.I.GenerateNTWC();
@@ -51,15 +52,21 @@ namespace ECDLManager
                 Global.I.debugMod = true;
                 chb_debugOnOff.ForeColor = Color.Green;
                 chb_debugOnOff.Text = "Režim DEBUG je zapnut";
-                Text = "SPS Debug - ECDL";
+                Text = "ECDL DEBUG";
             }
             else
             {
                 Global.I.debugMod = false;
                 chb_debugOnOff.ForeColor = Color.Red;
                 chb_debugOnOff.Text = "Režim DEBUG je vypnut";
-                Text = "SPS Ostrov - ECDL";
+                Text = "ECDL";
             }
+        }
+
+        private void lb_about_Click(object sender, EventArgs e)
+        {
+            Form about = new AboutInfo();
+            about.Show();
         }
     }
 }

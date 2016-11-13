@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Obecné informace o sestavení jsou řízeny prostřednictvím následující 
 // sadu atributů. Změnou hodnot těchto atributů se upraví informace
 // přidružené k sestavení.
-[assembly: AssemblyTitle("ECDLManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ECDL Manager")]
+[assembly: AssemblyDescription("Aplikace určená pro použití na zkouškách ECDL pro měření zbývajícího času jednotlivým účastníkům")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ECDLManager")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Ellyr Group")]
+[assembly: AssemblyProduct("ECDL Manager")]
+[assembly: AssemblyCopyright("Jan Novák")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Můžete zadat všechny hodnoty nebo nastavit výchozí očíslování sestavení a revize 
 // použitím znaku '*' jak je ukázáno dále:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.1.0")]
+[assembly: AssemblyFileVersion("1.1.1.0")]

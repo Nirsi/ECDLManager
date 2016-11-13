@@ -31,11 +31,12 @@
             this.bt_startGenerator = new System.Windows.Forms.Button();
             this.bt_startTest = new System.Windows.Forms.Button();
             this.chb_debugOnOff = new System.Windows.Forms.CheckBox();
+            this.lb_about = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_startGenerator
             // 
-            this.bt_startGenerator.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bt_startGenerator.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bt_startGenerator.Location = new System.Drawing.Point(12, 12);
             this.bt_startGenerator.Name = "bt_startGenerator";
             this.bt_startGenerator.Size = new System.Drawing.Size(208, 102);
@@ -46,8 +47,8 @@
             // 
             // bt_startTest
             // 
-            this.bt_startTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.bt_startTest.Location = new System.Drawing.Point(12, 150);
+            this.bt_startTest.Font = new System.Drawing.Font("Consolas", 21.75F);
+            this.bt_startTest.Location = new System.Drawing.Point(226, 12);
             this.bt_startTest.Name = "bt_startTest";
             this.bt_startTest.Size = new System.Drawing.Size(208, 100);
             this.bt_startTest.TabIndex = 1;
@@ -58,26 +59,39 @@
             // chb_debugOnOff
             // 
             this.chb_debugOnOff.AutoSize = true;
+            this.chb_debugOnOff.Font = new System.Drawing.Font("Consolas", 11F);
             this.chb_debugOnOff.ForeColor = System.Drawing.Color.Red;
-            this.chb_debugOnOff.Location = new System.Drawing.Point(45, 124);
+            this.chb_debugOnOff.Location = new System.Drawing.Point(29, 120);
             this.chb_debugOnOff.Name = "chb_debugOnOff";
-            this.chb_debugOnOff.Size = new System.Drawing.Size(142, 17);
+            this.chb_debugOnOff.Size = new System.Drawing.Size(195, 22);
             this.chb_debugOnOff.TabIndex = 2;
             this.chb_debugOnOff.Text = "Režim DEBUG je vypnut";
             this.chb_debugOnOff.UseVisualStyleBackColor = true;
             this.chb_debugOnOff.CheckedChanged += new System.EventHandler(this.chb_debugOnOff_CheckedChanged);
             // 
+            // lb_about
+            // 
+            this.lb_about.AutoSize = true;
+            this.lb_about.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.lb_about.Location = new System.Drawing.Point(276, 118);
+            this.lb_about.Name = "lb_about";
+            this.lb_about.Size = new System.Drawing.Size(110, 22);
+            this.lb_about.TabIndex = 3;
+            this.lb_about.Text = "O Aplikaci";
+            this.lb_about.Click += new System.EventHandler(this.lb_about_Click);
+            // 
             // Entry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 262);
+            this.ClientSize = new System.Drawing.Size(447, 149);
+            this.Controls.Add(this.lb_about);
             this.Controls.Add(this.chb_debugOnOff);
             this.Controls.Add(this.bt_startTest);
             this.Controls.Add(this.bt_startGenerator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Entry";
-            this.Text = "SPS Ostrov - ECDL";
+            this.Text = "ECDL";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,5 +102,6 @@
         private System.Windows.Forms.Button bt_startGenerator;
         private System.Windows.Forms.Button bt_startTest;
         private System.Windows.Forms.CheckBox chb_debugOnOff;
+        private System.Windows.Forms.Label lb_about;
     }
 }
