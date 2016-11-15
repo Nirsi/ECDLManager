@@ -13,7 +13,7 @@ namespace ECDLManager
 {
     public partial class Preprocessor : Form
     {
-        List<rawStudent> rawStudents = new List<rawStudent>();
+        List<RawStudent> rawStudents = new List<RawStudent>();
         string tempListContent = string.Empty;
 
 
@@ -48,13 +48,46 @@ namespace ECDLManager
 
         private void bt_loadData_Click(object sender, EventArgs e)
         {
+            if(LoadAndCheckInput())
+                LoadRawData(sender);
+            else if (!Global.I.debugMod)
+                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        #region IO operations
+
+        private bool LoadAndCheckInput()
+        {
+            using (StreamReader st = new StreamReader(tb_filePath.Text, Encoding.Default))
+            {
+                try
+                {
+                    RawStudent[] rs = new RawStudent[1];
+                    string[] data = st.ReadLine().Split(' ');
+                    rs[0] = new RawStudent(data[0], data[1]);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    if (Global.I.debugMod)
+                    {
+                        MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    tb_filePath.Text = string.Empty;
+                    return false;
+                }
+            }
+        }
+
+        private void LoadRawData(object sender)
+        {
             using (StreamReader sr = new StreamReader(tb_filePath.Text, Encoding.Default))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] data = line.Split(' ');
-                    rawStudents.Add(new rawStudent(data[0], data[1]));
+                    rawStudents.Add(new RawStudent(data[0], data[1]));
                 }
 
                 (sender as Button).Enabled = false;
@@ -63,7 +96,7 @@ namespace ECDLManager
                 lb_inputDataStatus.ForeColor = Color.Green;
 
 
-                if(Global.I.debugMod)
+                if (Global.I.debugMod)
                 {
                     foreach (var rs in rawStudents)
                     {
@@ -87,7 +120,7 @@ namespace ECDLManager
                 {
                     //modul,date,time,exam duration
                     sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
-                    foreach (rawStudent rs in rawStudents)
+                    foreach (RawStudent rs in rawStudents)
                     {
                         //student's name, student's lastname, exam duration in minutes
                         sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text);
@@ -96,10 +129,7 @@ namespace ECDLManager
             }
         }
 
-        private void bt_saveFormatedData_Click(object sender, EventArgs e)
-        {
-            GenerateAndSaveFormatedData();
-        }
+        #endregion
 
         #region ToolTip metods
 
@@ -121,6 +151,11 @@ namespace ECDLManager
 
         #endregion
 
+
+        private void bt_saveFormatedData_Click(object sender, EventArgs e)
+        {
+            GenerateAndSaveFormatedData();
+        }
         private void lb_about_Click(object sender, EventArgs e)
         {
             Form about = new AboutInfo();

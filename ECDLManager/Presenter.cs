@@ -33,11 +33,41 @@ namespace ECDLManager
         
         private void bt_loadFile_Click(object sender, EventArgs e)
         {
-            filePath = getFilePath();
+            if(LoadAndCheckInput())
+                LoadFormatedData(sender);
+            else if (!Global.I.debugMod)
+                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        }
+
+        private string getFilePath()
+        {
+            try
+            {
+                DialogResult result = ofd_inputFile.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    return ofd_inputFile.FileName;
+                }
+                else
+                    return "#null";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return string.Empty;
+            }
+        }
+
+        #region IO operations
+
+        private void LoadFormatedData(object sender)
+        {
+
+            //filePath = getFilePath();
 
             if (!(filePath == "#null"))
             {
-                //Error : if file selector is closed exceptio <Prázdná cesta není platná> will be throwed;
                 using (StreamReader sr = new StreamReader(filePath, Encoding.Default))
                 {
                     string line;
@@ -79,29 +109,53 @@ namespace ECDLManager
             }
             else
             {
-                MessageBox.Show("Nebyl vybrán žádný vstupní soubor!","Upoźornění",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Nebyl vybrán žádný vstupní soubor!", "Upozornění", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private string getFilePath()
+        private bool LoadAndCheckInput()
         {
-            try
+            filePath = getFilePath();
+
+            if (!(filePath == "#null"))
             {
-                DialogResult result = ofd_inputFile.ShowDialog();
-                if (result == DialogResult.OK)
+                using (StreamReader sr = new StreamReader(filePath, Encoding.Default))
                 {
-                    return ofd_inputFile.FileName;
+                    try
+                    {
+                        //modul,date,time of beginning,exam duration
+                        string[] data = sr.ReadLine().Split(';');
+
+                        lb_modul.Text = "Modul: " + data[0];
+                        lb_date.Text = "Datum: " + data[1];
+                        lb_examBeginning.Text = "Čas zahájení: " + data[2];
+                        lb_examDuration.Text = "Trvání testu: " + data[3] + " minut";
+
+                        lb_modul.Text = "Modul: ";
+                        lb_date.Text = "Datum: ";
+                        lb_examBeginning.Text = "Čas zahájení: ";
+                        lb_examDuration.Text = "Trvání testu: ";
+
+                        data = sr.ReadLine().Split(';');
+                        FormatedStudent[] fs = new FormatedStudent[1];
+                        fs[0] = new FormatedStudent(data[0], data[1], int.Parse(data[2]));
+
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (Global.I.debugMod)
+                            MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
-                else
-                    return "#null";
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return string.Empty;
-            }
+            else
+                return true;
         }
 
+        #endregion
+        
         #region Generators
         int initialLeft = 100;
         int initialTop = 200;

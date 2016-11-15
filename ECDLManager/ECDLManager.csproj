@@ -83,7 +83,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rawStudent.cs" />
+    <Compile Include="RawStudent.cs" />
     <Compile Include="TimeManager.cs" />
     <EmbeddedResource Include="AboutInfo.resx">
       <DependentUpon>AboutInfo.cs</DependentUpon>

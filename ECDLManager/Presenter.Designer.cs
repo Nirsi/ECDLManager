@@ -40,7 +40,6 @@
             this.ofd_inputFile = new System.Windows.Forms.OpenFileDialog();
             this.tmr_seconds = new System.Windows.Forms.Timer(this.components);
             this.lb_about = new System.Windows.Forms.Label();
-
             this.SuspendLayout();
             // 
             // lb_examDuration
@@ -48,7 +47,6 @@
             this.lb_examDuration.AutoSize = true;
             this.lb_examDuration.Font = new System.Drawing.Font("Consolas", 24F);
             this.lb_examDuration.Location = new System.Drawing.Point(246, 103);
-            this.lb_examDuration.Location = new System.Drawing.Point(539, 113);
             this.lb_examDuration.Name = "lb_examDuration";
             this.lb_examDuration.Size = new System.Drawing.Size(269, 37);
             this.lb_examDuration.TabIndex = 20;
@@ -58,7 +56,6 @@
             // 
             this.lb_examBeginning.AutoSize = true;
             this.lb_examBeginning.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_examBeginning.Location = new System.Drawing.Point(246, 54);
             this.lb_examBeginning.Location = new System.Drawing.Point(246, 58);
             this.lb_examBeginning.Name = "lb_examBeginning";
             this.lb_examBeginning.Size = new System.Drawing.Size(269, 37);
@@ -89,7 +86,6 @@
             // 
             this.bt_start.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_start.Location = new System.Drawing.Point(707, 12);
-            this.bt_start.Location = new System.Drawing.Point(896, 12);
             this.bt_start.Name = "bt_start";
             this.bt_start.Size = new System.Drawing.Size(151, 47);
             this.bt_start.TabIndex = 21;
@@ -101,7 +97,6 @@
             // 
             this.bt_stop.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_stop.Location = new System.Drawing.Point(864, 12);
-            this.bt_stop.Location = new System.Drawing.Point(986, 93);
             this.bt_stop.Name = "bt_stop";
             this.bt_stop.Size = new System.Drawing.Size(151, 47);
             this.bt_stop.TabIndex = 22;
@@ -113,7 +108,6 @@
             // 
             this.bt_reset.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_reset.Location = new System.Drawing.Point(1021, 12);
-            this.bt_reset.Location = new System.Drawing.Point(863, 188);
             this.bt_reset.Name = "bt_reset";
             this.bt_reset.Size = new System.Drawing.Size(151, 47);
             this.bt_reset.TabIndex = 23;
@@ -136,11 +130,6 @@
             // 
             this.ofd_inputFile.FileName = "formatedList";
             this.ofd_inputFile.Filter = "CSV|*.csv";
-            // 
-            // tmr_seconds
-            // 
-            this.tmr_seconds.Interval = 1000;
-            this.tmr_seconds.Tick += new System.EventHandler(this.tmr_seconds_Tick);
             // 
             // tmr_seconds
             // 
