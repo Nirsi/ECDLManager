@@ -31,15 +31,15 @@ namespace ECDLManager
             pres.Show();
 
             //Starts generators
-            Global.I.GenerateNTWC();
-            Global.I.GenerateWTNC();
+            //Global.I.GenerateNTWC();
+            //Global.I.GenerateWTNC();
             //Stops generators
-            Global.I.GenerateNTWP();
-            Global.I.GenerateWTNP();
+            //Global.I.GenerateNTWP();
+            //Global.I.GenerateWTNP();
             //Labels Generators
-            Global.I.GenerateNTWL();
-            Global.I.GenerateWTNL();
-            
+            //Global.I.GenerateNTWL();
+            //Global.I.GenerateWTNL();
+
 
             WindowState = FormWindowState.Minimized;
             

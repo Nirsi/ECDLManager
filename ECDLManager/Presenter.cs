@@ -191,7 +191,10 @@ namespace ECDLManager
                 l.Height = 35;
                 l.Width = 100;
                 l.Text = tm.times[i].GetFormatedTime();
-                l.Name = Global.I.numberToWordLabel[i];
+
+                //l.Name = Global.I.numberToWordLabel[i];
+                l.Name = i.ToString();
+
                 timeLabelsRefences.Add(l);
                 initialDynTop += l.Height + 4;
             }
@@ -216,7 +219,10 @@ namespace ECDLManager
                 b.Width = 175;
                 b.Text = "Pokračovat";
                 b.Click += new EventHandler(dynBt_continue);
-                b.Name = Global.I.numberToWordContinue[i];
+
+                //b.Name = Global.I.numberToWordContinue[i];
+                b.Name = i.ToString();
+
                 continueButtonReferences.Add(b);
                 initialDynTop += b.Height + 4;
             }
@@ -239,7 +245,10 @@ namespace ECDLManager
                 b.Width = 125;
                 b.Text = "Pauza";
                 b.Click += new EventHandler(dynBt_pause);
-                b.Name = Global.I.numberToWordPause[i];
+
+                //b.Name = Global.I.numberToWordPause[i];
+                b.Name = i.ToString();
+
                 pauseButtonReferences.Add(b);
                 initialDynTop += b.Height + 4;
             }
@@ -281,7 +290,9 @@ namespace ECDLManager
         private void dynBt_continue(object sender, EventArgs e)
         {
             Button bt = (Button)sender;
-            string searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberContinue[bt.Name]];
+            string searchedlabelsName;
+            //searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberContinue[bt.Name]];
+            searchedlabelsName = bt.Name;
 
             for (int i = 0; i < timeLabelsRefences.Count; i++)
             {
@@ -294,12 +305,16 @@ namespace ECDLManager
         {
 
             Button bt = (Button)sender;
-            string searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberPause[bt.Name]];
+            string searchedlabelsName;
+
+            //searchedlabelsName= Global.I.numberToWordLabel[Global.I.wordToNumberPause[bt.Name]];
+            searchedlabelsName = bt.Name;
 
             for (int i = 0; i < timeLabelsRefences.Count; i++)
             {
-                if(timeLabelsRefences[i].Name == searchedlabelsName)
+                if (timeLabelsRefences[i].Name == searchedlabelsName)
                     tm.PauseTimer(i);
+
             }
         }
 
