@@ -14,12 +14,13 @@ namespace ECDLManager
         public AboutInfo()
         {
             InitializeComponent();
-            Text = string.Format(AssemblyTitle);
-            lb_programName.Text = string.Format("{0}    <link>", AssemblyProduct);
+            //Text = string.Format(AssemblyTitle);
+            lb_appName.Text = string.Format("{0}", AssemblyProduct);
             lb_version.Text = string.Format("Verze:  {0}", AssemblyVersion);
             lb_author.Text = string.Format("Autor:  {0}", AssemblyCopyright);
             lb_groupName.Text = string.Format("Skupina:  {0}", AssemblyCompany);
             tb_description.Text = AssemblyDescription;
+            lb_projectLink.Text = "Odkaz na Projekt";
         }
 
         #region Assembly info access
@@ -102,7 +103,7 @@ namespace ECDLManager
         }
         #endregion
 
-        private void lb_programName_Click(object sender, EventArgs e)
+        private void lb_projectLink_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://goo.gl/eYuyNW");
         }
