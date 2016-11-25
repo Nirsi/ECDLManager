@@ -134,6 +134,7 @@
             // bt_loadData
             // 
             this.bt_loadData.Enabled = false;
+            this.bt_loadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_loadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bt_loadData.ForeColor = System.Drawing.Color.Black;
             this.bt_loadData.Location = new System.Drawing.Point(637, 4);
@@ -147,6 +148,7 @@
             // bt_saveFormatedData
             // 
             this.bt_saveFormatedData.Enabled = false;
+            this.bt_saveFormatedData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_saveFormatedData.Font = new System.Drawing.Font("Consolas", 14.25F);
             this.bt_saveFormatedData.Location = new System.Drawing.Point(278, 336);
             this.bt_saveFormatedData.Name = "bt_saveFormatedData";
@@ -223,6 +225,7 @@
             this.Controls.Add(this.tb_modulName);
             this.Name = "Preprocessor";
             this.Text = "ECDL Generátor";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Preprocessor_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

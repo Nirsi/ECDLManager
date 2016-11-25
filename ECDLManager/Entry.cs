@@ -63,10 +63,29 @@ namespace ECDLManager
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(Global.I.defaultHlm)
+            {
+                Global.I.defaultHlm = false;
+                chb_highlightColor.ForeColor = Color.Black;
+                chb_highlightColor.Text = "Zvýraznění pozastavených v testu černá/bílá";
+            }
+            else
+            {
+                Global.I.defaultHlm = true;
+                chb_highlightColor.ForeColor = Color.DarkGreen;
+                chb_highlightColor.Text = "Zvýraznění pozastavených v testu zelená/červená";
+            }
+
+        }
+
         private void lb_about_Click(object sender, EventArgs e)
         {
             Form about = new AboutInfo();
             about.Show();
         }
+
+        
     }
 }

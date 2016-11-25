@@ -28,6 +28,19 @@ namespace ECDLManager
 
         #endregion
 
+        /// <summary>
+        /// status bool for debug mod of application
+        /// </summary>
+        public bool debugMod = false;
+        /// <summary>
+        /// Shor for default Highlighter colors of test subjects
+        /// </summary>
+        public bool defaultHlm = true;
+        /// <summary>
+        /// Globalised instance Entry form 
+        /// </summary>
+        public Entry entry;
+
         //public Dictionary<string, int> wordToNumberContinue;
         //public Dictionary<int, string> numberToWordContinue;
 
@@ -36,8 +49,6 @@ namespace ECDLManager
 
         //public Dictionary<string, int> wordToNumberLabel;
         //public Dictionary<int, string> numberToWordLabel;
-
-        public bool debugMod = false;
 
         //#region Translative Dictionary creation
 

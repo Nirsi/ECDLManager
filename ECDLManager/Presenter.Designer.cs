@@ -84,6 +84,8 @@
             // 
             // bt_start
             // 
+            this.bt_start.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_start.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_start.Location = new System.Drawing.Point(707, 12);
             this.bt_start.Name = "bt_start";
@@ -95,6 +97,7 @@
             // 
             // bt_stop
             // 
+            this.bt_stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_stop.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_stop.Location = new System.Drawing.Point(864, 12);
             this.bt_stop.Name = "bt_stop";
@@ -106,6 +109,7 @@
             // 
             // bt_reset
             // 
+            this.bt_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_reset.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_reset.Location = new System.Drawing.Point(1021, 12);
             this.bt_reset.Name = "bt_reset";
@@ -117,6 +121,7 @@
             // 
             // bt_loadFile
             // 
+            this.bt_loadFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_loadFile.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bt_loadFile.Location = new System.Drawing.Point(12, 58);
             this.bt_loadFile.Name = "bt_loadFile";
@@ -162,8 +167,10 @@
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.lb_modul);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Presenter";
             this.Text = "ECDL Test";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Presenter_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

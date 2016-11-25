@@ -175,7 +175,7 @@ namespace ECDLManager
                 l.Width = 300;
                 l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
                 Controls.Add(l);
-                initialDynTop += l.Height + 4;
+                initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
         }
@@ -196,7 +196,7 @@ namespace ECDLManager
                 l.Name = i.ToString();
 
                 timeLabelsRefences.Add(l);
-                initialDynTop += l.Height + 4;
+                initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
             foreach (var l in timeLabelsRefences)
@@ -212,12 +212,14 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = initialLeft + 570;
+                b.Left = initialLeft + 760;
                 b.Top = initialDynTop;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
-                b.Height = 35;
+                b.Height = 38;
                 b.Width = 175;
                 b.Text = "Pokračovat";
+                b.TextAlign = ContentAlignment.TopCenter;
+                b.FlatStyle = FlatStyle.Flat;
                 b.Click += new EventHandler(dynBt_continue);
 
                 //b.Name = Global.I.numberToWordContinue[i];
@@ -238,14 +240,15 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = initialLeft + 800;
+                b.Left = initialLeft + 570;
                 b.Top = initialDynTop;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
-                b.Height = 35;
+                b.Height = 38;
                 b.Width = 125;
                 b.Text = "Pauza";
+                b.TextAlign = ContentAlignment.TopCenter;
+                b.FlatStyle = FlatStyle.Flat;
                 b.Click += new EventHandler(dynBt_pause);
-
                 //b.Name = Global.I.numberToWordPause[i];
                 b.Name = i.ToString();
 
@@ -284,7 +287,17 @@ namespace ECDLManager
 
         private void bt_reset_Click(object sender, EventArgs e)
         {
-            tm.ResetAllTimes();
+            tm.ResetAll();
+            tm.RestoreAll();
+
+            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            {
+                timeLabelsRefences[i].Text = tm.times[i].GetFormatedTime();
+                continueButtonReferences[i].BackColor = SystemColors.Control;
+                continueButtonReferences[i].ForeColor = Color.Black;
+                pauseButtonReferences[i].BackColor = SystemColors.Control;
+                pauseButtonReferences[i].ForeColor = Color.Black;
+            }
         }
 
         private void dynBt_continue(object sender, EventArgs e)
@@ -298,8 +311,14 @@ namespace ECDLManager
             {
                 if (timeLabelsRefences[i].Name == searchedlabelsName)
                     tm.RestoreTimer(i);
+                if (pauseButtonReferences[i].Name == bt.Name)
+                {
+                    pauseButtonReferences[i].BackColor = SystemColors.Control;
+                    pauseButtonReferences[i].ForeColor = Color.Black;
+                }
             }
-          
+            bt.BackColor = SystemColors.Control;
+            bt.ForeColor = Color.Black;
         }
         private void dynBt_pause(object sender, EventArgs e)
         {
@@ -314,7 +333,21 @@ namespace ECDLManager
             {
                 if (timeLabelsRefences[i].Name == searchedlabelsName)
                     tm.PauseTimer(i);
+                if (continueButtonReferences[i].Name == bt.Name)
+                    if (Global.I.defaultHlm) continueButtonReferences[i].BackColor = Color.Green;
+                    else
+                    {
+                        continueButtonReferences[i].BackColor = Color.Black;
+                        continueButtonReferences[i].ForeColor = Color.White;
 
+                    }
+
+            }
+            if (Global.I.defaultHlm) bt.BackColor = Color.Red;
+            else
+            {
+                bt.BackColor = Color.Black;
+                bt.ForeColor = Color.White;
             }
         }
 
@@ -323,8 +356,11 @@ namespace ECDLManager
             Form about = new AboutInfo();
             about.Show();
         }
+        
+        private void Presenter_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Global.I.entry.WindowState = FormWindowState.Normal;
+        }
         #endregion
-
-       
     }
 }

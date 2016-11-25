@@ -161,5 +161,10 @@ namespace ECDLManager
             Form about = new AboutInfo();
             about.Show();
         }
+
+        private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Global.I.entry.WindowState = FormWindowState.Normal;
+        }
     }
 }

@@ -16,7 +16,8 @@ namespace ECDLManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Entry());
+            Global.I.entry = new Entry();
+            Application.Run(Global.I.entry);
         }
     }
 }
