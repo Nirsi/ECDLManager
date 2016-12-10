@@ -60,6 +60,12 @@
     <Compile Include="AboutInfo.Designer.cs">
       <DependentUpon>AboutInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="DebugOutputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugOutputForm.designer.cs">
+      <DependentUpon>DebugOutputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,7 +73,7 @@
       <DependentUpon>Entry.cs</DependentUpon>
     </Compile>
     <Compile Include="FormatedStudent.cs" />
-    <Compile Include="Global.cs" />
+    <Compile Include="G.cs" />
     <Compile Include="MinSecTime.cs" />
     <Compile Include="Preprocessor.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
     <Compile Include="TimeManager.cs" />
     <EmbeddedResource Include="AboutInfo.resx">
       <DependentUpon>AboutInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugOutputForm.resx">
+      <DependentUpon>DebugOutputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entry.resx">
       <DependentUpon>Entry.cs</DependentUpon>

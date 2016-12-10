@@ -40,6 +40,7 @@
             this.ofd_inputFile = new System.Windows.Forms.OpenFileDialog();
             this.tmr_seconds = new System.Windows.Forms.Timer(this.components);
             this.lb_about = new System.Windows.Forms.Label();
+            this.lb_end = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_examDuration
@@ -85,6 +86,7 @@
             // bt_start
             // 
             this.bt_start.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_start.Enabled = false;
             this.bt_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_start.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_start.Location = new System.Drawing.Point(707, 12);
@@ -97,6 +99,7 @@
             // 
             // bt_stop
             // 
+            this.bt_stop.Enabled = false;
             this.bt_stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_stop.Font = new System.Drawing.Font("Consolas", 24F);
             this.bt_stop.Location = new System.Drawing.Point(864, 12);
@@ -109,6 +112,7 @@
             // 
             // bt_reset
             // 
+            this.bt_reset.Enabled = false;
             this.bt_reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_reset.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_reset.Location = new System.Drawing.Point(1021, 12);
@@ -152,11 +156,27 @@
             this.lb_about.Text = "O aplikaci";
             this.lb_about.Click += new System.EventHandler(this.lb_about_Click);
             // 
+            // lb_end
+            // 
+            this.lb_end.AutoSize = true;
+            this.lb_end.Cursor = System.Windows.Forms.Cursors.Help;
+            this.lb_end.Font = new System.Drawing.Font("Consolas", 72F, System.Drawing.FontStyle.Bold);
+            this.lb_end.Location = new System.Drawing.Point(182, 319);
+            this.lb_end.MaximumSize = new System.Drawing.Size(1000, 0);
+            this.lb_end.Name = "lb_end";
+            this.lb_end.Size = new System.Drawing.Size(789, 224);
+            this.lb_end.TabIndex = 26;
+            this.lb_end.Text = "Čas na zkoušku vypršel";
+            this.lb_end.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_end.Visible = false;
+            this.lb_end.Click += new System.EventHandler(this.lb_end_Click);
+            // 
             // Presenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 942);
+            this.Controls.Add(this.lb_end);
             this.Controls.Add(this.lb_about);
             this.Controls.Add(this.bt_loadFile);
             this.Controls.Add(this.bt_reset);
@@ -187,7 +207,8 @@
         private System.Windows.Forms.Button bt_reset;
         private System.Windows.Forms.Button bt_loadFile;
         private System.Windows.Forms.OpenFileDialog ofd_inputFile;
-        private System.Windows.Forms.Timer tmr_seconds;
         private System.Windows.Forms.Label lb_about;
+        internal System.Windows.Forms.Timer tmr_seconds;
+        private System.Windows.Forms.Label lb_end;
     }
 }

@@ -51,6 +51,5 @@ namespace ECDLManager
                 mst.Reset();
             }
         }
-
     }
 }

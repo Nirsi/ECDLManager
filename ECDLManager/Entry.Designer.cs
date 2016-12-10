@@ -135,7 +135,7 @@
             this.chb_highlightColor.TabIndex = 3;
             this.chb_highlightColor.Text = "Zvýraznění pozastavených v testu zelená/červená";
             this.chb_highlightColor.UseVisualStyleBackColor = true;
-            this.chb_highlightColor.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chb_highlightColor.CheckedChanged += new System.EventHandler(this.chb_highlightColor_CheckedChanged);
             // 
             // Entry
             // 

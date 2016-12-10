@@ -20,7 +20,7 @@ namespace ECDLManager
         public Preprocessor()
         {
             InitializeComponent();
-            if (Global.I.debugMod)
+            if (G.I.debugMod)
                 Text = "ECDL Generátor - DEBUG";
         }
 
@@ -50,7 +50,7 @@ namespace ECDLManager
         {
             if(LoadAndCheckInput())
                 LoadRawData(sender);
-            else if (!Global.I.debugMod)
+            else if (!G.I.debugMod)
                 MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
@@ -69,7 +69,7 @@ namespace ECDLManager
                 }
                 catch (Exception ex)
                 {
-                    if (Global.I.debugMod)
+                    if (G.I.debugMod)
                     {
                         MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -96,7 +96,7 @@ namespace ECDLManager
                 lb_inputDataStatus.ForeColor = Color.Green;
 
 
-                if (Global.I.debugMod)
+                if (G.I.debugMod)
                 {
                     foreach (var rs in rawStudents)
                     {
@@ -164,7 +164,7 @@ namespace ECDLManager
 
         private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Global.I.entry.WindowState = FormWindowState.Normal;
+            G.I.entry.WindowState = FormWindowState.Normal;
         }
     }
 }

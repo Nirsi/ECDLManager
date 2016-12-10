@@ -34,3 +34,4 @@ C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECD
 H:\Dokumenty\Visual Studio 2013\Projects\ECDLManager\ECDLManager\obj\Debug\ECDLManager.AboutInfo.resources
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.AboutInfo.resources
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.Presenter.resources
+C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Debug\ECDLManager.DebugOutputForm.resources

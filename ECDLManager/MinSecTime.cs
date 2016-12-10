@@ -19,7 +19,10 @@ namespace ECDLManager
         {
             this.min = min;
             initialTime = min;
-            sec = 0;
+            if (initialTime == 0)
+                sec = 10;
+            else
+                sec = 0;
             isCountable = true;
             
         }
@@ -51,7 +54,10 @@ namespace ECDLManager
         internal void Reset()
         {
             min = initialTime;
-            sec = 0;
+            if (initialTime == 0)
+                sec = 10;
+            else
+                sec = 0;
         }
 
         internal string GetFormatedTime()

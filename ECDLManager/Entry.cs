@@ -29,53 +29,47 @@ namespace ECDLManager
 
             Form pres = new Presenter();
             pres.Show();
-
-            //Starts generators
-            //Global.I.GenerateNTWC();
-            //Global.I.GenerateWTNC();
-            //Stops generators
-            //Global.I.GenerateNTWP();
-            //Global.I.GenerateWTNP();
-            //Labels Generators
-            //Global.I.GenerateNTWL();
-            //Global.I.GenerateWTNL();
-
-
+            
             WindowState = FormWindowState.Minimized;
             
         }
 
         private void chb_debugOnOff_CheckedChanged(object sender, EventArgs e)
         {
-            if (!Global.I.debugMod)
+            if (!G.I.debugMod)
             {
-                Global.I.debugMod = true;
+                G.I.debugMod = true;
                 chb_debugOnOff.ForeColor = Color.Green;
                 chb_debugOnOff.Text = "Režim DEBUG je zapnut";
                 Text = "ECDL DEBUG";
+                G.I.dof = new DebugOutputForm();
+                G.I.dof.Show();
             }
             else
             {
-                Global.I.debugMod = false;
+                G.I.debugMod = false;
                 chb_debugOnOff.ForeColor = Color.Red;
                 chb_debugOnOff.Text = "Režim DEBUG je vypnut";
                 Text = "ECDL";
+                G.I.dof.Hide();
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void chb_highlightColor_CheckedChanged(object sender, EventArgs e)
         {
-            if(Global.I.defaultHlm)
+            if(G.I.defaultHlm)
             {
-                Global.I.defaultHlm = false;
+                G.I.defaultHlm = false;
                 chb_highlightColor.ForeColor = Color.Black;
                 chb_highlightColor.Text = "Zvýraznění pozastavených v testu černá/bílá";
+                G.I.dof.WriteInfo("Změna zvýraznění pozastaveného na černá/bílá");
             }
             else
             {
-                Global.I.defaultHlm = true;
+                G.I.defaultHlm = true;
                 chb_highlightColor.ForeColor = Color.DarkGreen;
                 chb_highlightColor.Text = "Zvýraznění pozastavených v testu zelená/červená";
+                G.I.dof.WriteInfo("Změna zvýraznění pozastaveného na zelená/červená");
             }
 
         }

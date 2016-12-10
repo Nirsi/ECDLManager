@@ -49,7 +49,7 @@
             // tb_modulName
             // 
             this.tb_modulName.Location = new System.Drawing.Point(147, 113);
-            this.tb_modulName.MaxLength = 2;
+            this.tb_modulName.MaxLength = 3;
             this.tb_modulName.Name = "tb_modulName";
             this.tb_modulName.Size = new System.Drawing.Size(188, 20);
             this.tb_modulName.TabIndex = 0;

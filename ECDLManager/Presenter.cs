@@ -16,30 +16,27 @@ namespace ECDLManager
         public Presenter()
         {
             InitializeComponent();
-            if (Global.I.debugMod)
+            if (G.I.debugMod)
                 Text = "ECDL Test - DEBUG";
         }
 
         private string tempListContent = string.Empty;
         private string filePath = string.Empty;
+        private int completedLinesCounter = 0;
 
         private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
-        private List<Label> timeLabelsRefences = new List<Label>();
-        private List<Button> continueButtonReferences = new List<Button>();
-        private List<Button> pauseButtonReferences = new List<Button>();
+        private List<Label> nameLabelsRef = new List<Label>();
+        private List<Label> timeLabelsRef = new List<Label>();
+        private List<Button> continueButtonRef = new List<Button>();
+        private List<Button> pauseButtonRef = new List<Button>();
 
         private TimeManager tm;
 
         
-        private void bt_loadFile_Click(object sender, EventArgs e)
-        {
-            if(LoadAndCheckInput())
-                LoadFormatedData(sender);
-            else if (!Global.I.debugMod)
-                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        
 
-        }
 
+        #region Other methods
         private string getFilePath()
         {
             try
@@ -57,7 +54,9 @@ namespace ECDLManager
                 MessageBox.Show(ex.ToString());
                 return string.Empty;
             }
-        }
+        } 
+        
+        #endregion
 
         #region IO operations
 
@@ -92,7 +91,7 @@ namespace ECDLManager
                     (sender as Button).Enabled = false;
                     //(sender as Button).Visible = false;
 
-                    if (Global.I.debugMod)
+                    if (G.I.debugMod)
                     {
                         foreach (var item in formatedStudents)
                         {
@@ -144,7 +143,7 @@ namespace ECDLManager
                     }
                     catch (Exception ex)
                     {
-                        if (Global.I.debugMod)
+                        if (G.I.debugMod)
                             MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
@@ -174,7 +173,9 @@ namespace ECDLManager
                 l.Height = 35;
                 l.Width = 300;
                 l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
+                l.Name = i.ToString();
                 Controls.Add(l);
+                nameLabelsRef.Add(l);
                 initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
@@ -195,11 +196,11 @@ namespace ECDLManager
                 //l.Name = Global.I.numberToWordLabel[i];
                 l.Name = i.ToString();
 
-                timeLabelsRefences.Add(l);
+                timeLabelsRef.Add(l);
                 initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
-            foreach (var l in timeLabelsRefences)
+            foreach (var l in timeLabelsRef)
             {
                 Controls.Add(l);
             }
@@ -225,10 +226,10 @@ namespace ECDLManager
                 //b.Name = Global.I.numberToWordContinue[i];
                 b.Name = i.ToString();
 
-                continueButtonReferences.Add(b);
+                continueButtonRef.Add(b);
                 initialDynTop += b.Height + 4;
             }
-            foreach (var b in continueButtonReferences)
+            foreach (var b in continueButtonRef)
             {
                 Controls.Add(b);
             }
@@ -252,10 +253,10 @@ namespace ECDLManager
                 //b.Name = Global.I.numberToWordPause[i];
                 b.Name = i.ToString();
 
-                pauseButtonReferences.Add(b);
+                pauseButtonRef.Add(b);
                 initialDynTop += b.Height + 4;
             }
-            foreach (var b in pauseButtonReferences)
+            foreach (var b in pauseButtonRef)
             {
                 Controls.Add(b);
             }
@@ -266,13 +267,51 @@ namespace ECDLManager
 
         #region event handlers
 
+        private void bt_loadFile_Click(object sender, EventArgs e)
+        {
+            if (LoadAndCheckInput())
+            {
+                LoadFormatedData(sender);
+                bt_start.Enabled = true;
+                bt_stop.Enabled = true;
+                bt_reset.Enabled = true;
+            }
+            else if (!G.I.debugMod)
+                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        }
+
         private void tmr_seconds_Tick(object sender, EventArgs e)
         {
+            //Funkční proof-of-concept : dodělat zabarvování pro jména účastníků (vytvořit pole referencí na objekty 'label' jmén účastníků)
             tm.CountDown();
-            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            for (int i = 0; i < timeLabelsRef.Count; i++)
             {
-                timeLabelsRefences[i].Text = tm.times[i].GetFormatedTime();
+                timeLabelsRef[i].Text = tm.times[i].GetFormatedTime();
+                if(tm.times[i].GetFormatedTime() == "00:00")
+                {
+                    timeLabelsRef[i].ForeColor = Color.Red;
+                    nameLabelsRef[i].ForeColor = Color.Red;
+
+                    continueButtonRef[i].ForeColor = Color.Red;
+                    continueButtonRef[i].Enabled = false;
+
+                    pauseButtonRef[i].ForeColor = Color.Red;
+                    pauseButtonRef[i].Enabled = false;
+
+                    tm.PauseTimer(i);
+                    completedLinesCounter++;
+                }
+
             }
+            if(completedLinesCounter == nameLabelsRef.Count)
+            {
+                tmr_seconds.Stop();
+                //Fire up some informational thing..? with very interesting message, that there is no more time for the test.
+                lb_end.Visible = true;
+            }
+            completedLinesCounter = 0;
+
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -290,13 +329,13 @@ namespace ECDLManager
             tm.ResetAll();
             tm.RestoreAll();
 
-            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            for (int i = 0; i < timeLabelsRef.Count; i++)
             {
-                timeLabelsRefences[i].Text = tm.times[i].GetFormatedTime();
-                continueButtonReferences[i].BackColor = SystemColors.Control;
-                continueButtonReferences[i].ForeColor = Color.Black;
-                pauseButtonReferences[i].BackColor = SystemColors.Control;
-                pauseButtonReferences[i].ForeColor = Color.Black;
+                timeLabelsRef[i].Text = tm.times[i].GetFormatedTime();
+                continueButtonRef[i].BackColor = SystemColors.Control;
+                continueButtonRef[i].ForeColor = Color.Black;
+                pauseButtonRef[i].BackColor = SystemColors.Control;
+                pauseButtonRef[i].ForeColor = Color.Black;
             }
         }
 
@@ -307,14 +346,14 @@ namespace ECDLManager
             //searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberContinue[bt.Name]];
             searchedlabelsName = bt.Name;
 
-            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            for (int i = 0; i < timeLabelsRef.Count; i++)
             {
-                if (timeLabelsRefences[i].Name == searchedlabelsName)
+                if (timeLabelsRef[i].Name == searchedlabelsName)
                     tm.RestoreTimer(i);
-                if (pauseButtonReferences[i].Name == bt.Name)
+                if (pauseButtonRef[i].Name == bt.Name)
                 {
-                    pauseButtonReferences[i].BackColor = SystemColors.Control;
-                    pauseButtonReferences[i].ForeColor = Color.Black;
+                    pauseButtonRef[i].BackColor = SystemColors.Control;
+                    pauseButtonRef[i].ForeColor = Color.Black;
                 }
             }
             bt.BackColor = SystemColors.Control;
@@ -329,21 +368,21 @@ namespace ECDLManager
             //searchedlabelsName= Global.I.numberToWordLabel[Global.I.wordToNumberPause[bt.Name]];
             searchedlabelsName = bt.Name;
 
-            for (int i = 0; i < timeLabelsRefences.Count; i++)
+            for (int i = 0; i < timeLabelsRef.Count; i++)
             {
-                if (timeLabelsRefences[i].Name == searchedlabelsName)
+                if (timeLabelsRef[i].Name == searchedlabelsName)
                     tm.PauseTimer(i);
-                if (continueButtonReferences[i].Name == bt.Name)
-                    if (Global.I.defaultHlm) continueButtonReferences[i].BackColor = Color.Green;
+                if (continueButtonRef[i].Name == bt.Name)
+                    if (G.I.defaultHlm) continueButtonRef[i].BackColor = Color.Green;
                     else
                     {
-                        continueButtonReferences[i].BackColor = Color.Black;
-                        continueButtonReferences[i].ForeColor = Color.White;
+                        continueButtonRef[i].BackColor = Color.Black;
+                        continueButtonRef[i].ForeColor = Color.White;
 
                     }
 
             }
-            if (Global.I.defaultHlm) bt.BackColor = Color.Red;
+            if (G.I.defaultHlm) bt.BackColor = Color.Red;
             else
             {
                 bt.BackColor = Color.Black;
@@ -359,8 +398,16 @@ namespace ECDLManager
         
         private void Presenter_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Global.I.entry.WindowState = FormWindowState.Normal;
+            G.I.entry.WindowState = FormWindowState.Normal;
+        }
+
+        private void lb_end_Click(object sender, EventArgs e)
+        {
+            (sender as Label).Visible = false;
+            (sender as Label).Enabled = false;
         }
         #endregion
+
+
     }
 }
