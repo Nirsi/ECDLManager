@@ -41,17 +41,20 @@ namespace ECDLManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                G.I.dof.WriteError(ex.ToString());
             }
         }
 
 
         private void bt_loadData_Click(object sender, EventArgs e)
         {
-            if(LoadAndCheckInput())
+            if (LoadAndCheckInput())
+            { 
                 LoadRawData(sender);
-            else if (!G.I.debugMod)
-                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                G.I.dof.WriteInfo("Data do generátoru načtena");
+            }
+            else
+                G.I.dof.WriteWarning("Soubor, který byl načten do generátoru má nesprávný formát nebo je požkozen");
         }
 
         #region IO operations
@@ -69,10 +72,7 @@ namespace ECDLManager
                 }
                 catch (Exception ex)
                 {
-                    if (G.I.debugMod)
-                    {
-                        MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    G.I.dof.WriteError(ex.ToString());
                     tb_filePath.Text = string.Empty;
                     return false;
                 }
@@ -89,7 +89,7 @@ namespace ECDLManager
                     string[] data = line.Split(' ');
                     rawStudents.Add(new RawStudent(data[0], data[1]));
                 }
-
+                
                 (sender as Button).Enabled = false;
                 bt_saveFormatedData.Enabled = true;
                 lb_inputDataStatus.Text = "Vstuptní data NAČTENA";
@@ -100,10 +100,9 @@ namespace ECDLManager
                 {
                     foreach (var rs in rawStudents)
                     {
-                        tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
+                        //tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
                     }
-
-                    MessageBox.Show("\n" + tempListContent, "DEBUG : rawStudents list");
+                    //G.I.dof.WriteInfo("Načtená data do generátoru\n" + tempListContent);
                 }
             }
         }
@@ -116,17 +115,27 @@ namespace ECDLManager
 
             if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
+                try
                 {
-                    //modul,date,time,exam duration
-                    sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
-                    foreach (RawStudent rs in rawStudents)
+                    using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
                     {
-                        //student's name, student's lastname, exam duration in minutes
-                        sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text);
+                        //modul,date,time,exam duration
+                        sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
+                        foreach (RawStudent rs in rawStudents)
+                        {
+                            //student's name, student's lastname, exam duration in minutes
+                            sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    G.I.dof.WriteError(ex.ToString());
+                }
+                G.I.dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
             }
+            else
+                G.I.dof.WriteWarning("Nebyla vybrána žádná cesta pro uložení dat");
         }
 
         #endregion
@@ -152,19 +161,24 @@ namespace ECDLManager
         #endregion
 
 
+        #region Event handlers
         private void bt_saveFormatedData_Click(object sender, EventArgs e)
         {
             GenerateAndSaveFormatedData();
+
         }
         private void lb_about_Click(object sender, EventArgs e)
         {
-            Form about = new AboutInfo();
+            Form about = new About();
             about.Show();
+            G.I.dof.WriteInfo("Bylo otevřeno okno 'O aplikaci'");
         }
 
         private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
         {
             G.I.entry.WindowState = FormWindowState.Normal;
-        }
+            G.I.dof.WriteInfo("Oknco generátoru bylo zavřeno");
+        } 
+        #endregion
     }
 }

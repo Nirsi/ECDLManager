@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace ECDLManager
 {
-    partial class AboutInfo : Form
+    partial class About : Form
     {
-        public AboutInfo()
+        public About()
         {
             InitializeComponent();
             //Text = string.Format(AssemblyTitle);
@@ -20,6 +20,7 @@ namespace ECDLManager
             lb_author.Text = string.Format("Autor:  {0}", AssemblyCopyright);
             lb_groupName.Text = string.Format("Skupina:  {0}", AssemblyCompany);
             tb_description.Text = AssemblyDescription;
+            lb_license.Text = "Licence: CC BY-NC-SA 4.0";
             lb_projectLink.Text = "Odkaz na Projekt";
         }
 
@@ -106,6 +107,11 @@ namespace ECDLManager
         private void lb_projectLink_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://goo.gl/eYuyNW");
+        }
+
+        private void lb_license_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://creativecommons.org/licenses/by-nc-sa/4.0/");
         }
     }
 }

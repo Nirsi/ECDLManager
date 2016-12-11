@@ -15,13 +15,18 @@ namespace ECDLManager
         public Entry()
         {
             InitializeComponent();
+            G.I.dof = new DebugOutputForm();
         }
+
+        #region Event handlers
 
         private void bt_startGenerator_Click(object sender, EventArgs e)
         {
             Form preproc = new Preprocessor();
             preproc.Show();
             WindowState = FormWindowState.Minimized;
+            G.I.dof.WriteInfo("Okno generátoru bylo otevřeno");
+
         }
 
         private void bt_startTest_Click(object sender, EventArgs e)
@@ -29,9 +34,10 @@ namespace ECDLManager
 
             Form pres = new Presenter();
             pres.Show();
-            
+            G.I.dof.WriteInfo("Okno testu bylo otevřeno");
+
             WindowState = FormWindowState.Minimized;
-            
+
         }
 
         private void chb_debugOnOff_CheckedChanged(object sender, EventArgs e)
@@ -42,7 +48,6 @@ namespace ECDLManager
                 chb_debugOnOff.ForeColor = Color.Green;
                 chb_debugOnOff.Text = "Režim DEBUG je zapnut";
                 Text = "ECDL DEBUG";
-                G.I.dof = new DebugOutputForm();
                 G.I.dof.Show();
             }
             else
@@ -57,7 +62,7 @@ namespace ECDLManager
 
         private void chb_highlightColor_CheckedChanged(object sender, EventArgs e)
         {
-            if(G.I.defaultHlm)
+            if (G.I.defaultHlm)
             {
                 G.I.defaultHlm = false;
                 chb_highlightColor.ForeColor = Color.Black;
@@ -76,10 +81,13 @@ namespace ECDLManager
 
         private void lb_about_Click(object sender, EventArgs e)
         {
-            Form about = new AboutInfo();
+            Form about = new About();
             about.Show();
-        }
+            G.I.dof.WriteInfo("Okno 'O aplikaci' otevřeno z menu");
+        } 
 
-        
+        #endregion
+
+
     }
 }

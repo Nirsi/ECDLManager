@@ -54,11 +54,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutInfo.cs">
+    <Compile Include="About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutInfo.Designer.cs">
-      <DependentUpon>AboutInfo.cs</DependentUpon>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="DebugOutputForm.cs">
       <SubType>Form</SubType>
@@ -91,8 +91,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawStudent.cs" />
     <Compile Include="TimeManager.cs" />
-    <EmbeddedResource Include="AboutInfo.resx">
-      <DependentUpon>AboutInfo.cs</DependentUpon>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DebugOutputForm.resx">
       <DependentUpon>DebugOutputForm.cs</DependentUpon>

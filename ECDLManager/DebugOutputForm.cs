@@ -40,7 +40,7 @@ namespace ECDLManager
                 rtb_debugLog.AppendText(input + Environment.NewLine);
         }
         /// <summary>
-        /// Zápis 'informace' do logu modrou barvou
+        /// Zápis 'informace' do logu světle modrou barvou
         /// </summary>
         /// <param name="input"> Zpráva k zobrazení</param>
         public void WriteInfo(string input)
@@ -49,7 +49,7 @@ namespace ECDLManager
             {
                 rtb_debugLog.SelectionStart = rtb_debugLog.TextLength;
                 rtb_debugLog.SelectionLength = 0;
-                rtb_debugLog.SelectionColor = Color.Blue;
+                rtb_debugLog.SelectionColor = Color.LightBlue;
                 rtb_debugLog.AppendText(input + Environment.NewLine);
                 rtb_debugLog.SelectionColor = rtb_debugLog.ForeColor; 
             }

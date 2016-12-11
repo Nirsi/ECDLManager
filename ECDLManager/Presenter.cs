@@ -84,20 +84,19 @@ namespace ECDLManager
                     while ((line = sr.ReadLine()) != null)
                     {
                         string[] data = line.Split(';');
-                        //rawStudents.Add(new rawStudent(data[0], data[1]));
                         formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2])));
                     }
                     tm = new TimeManager(formatedStudents);
                     (sender as Button).Enabled = false;
-                    //(sender as Button).Visible = false;
+
 
                     if (G.I.debugMod)
                     {
                         foreach (var item in formatedStudents)
                         {
-                            tempListContent += "||| Student name: " + item.name + " student lastname: " + item.lastname + " student exam-span: " + item.examDuration + " |||";
+                           // tempListContent += "||| Student name: " + item.name + " student lastname: " + item.lastname + " student exam-span: " + item.examDuration + " |||";
                         }
-                        MessageBox.Show(tempListContent, "|DEBUG| : formated students");
+                        //G.I.dof.WriteInfo("Načtená formátovaná data\n" + tempListContent);
                     }
 
                     GenerateNamesOfStudents();
@@ -143,8 +142,7 @@ namespace ECDLManager
                     }
                     catch (Exception ex)
                     {
-                        if (G.I.debugMod)
-                            MessageBox.Show(ex.ToString(), "Debug output", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        G.I.dof.WriteWarning("Načtená data neprošla skrze úvodní filtr");
                         return false;
                     }
                 }
@@ -179,6 +177,7 @@ namespace ECDLManager
                 initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
+            G.I.dof.WriteInfo("byly vygenerovány labely se jmény účastníků");
         }
 
         private void GenerateTimeOfStudents()
@@ -204,6 +203,7 @@ namespace ECDLManager
             {
                 Controls.Add(l);
             }
+            G.I.dof.WriteInfo("byly vygenerovány labely s časy účastníků");
         }
 
         private void GenerateButtons()
@@ -234,7 +234,7 @@ namespace ECDLManager
                 Controls.Add(b);
             }
             initialDynTop = initialTop;
-
+            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pokračování");
 
             //stop buttons
             for (int i = 0; i < tm.times.Count; i++)
@@ -261,6 +261,8 @@ namespace ECDLManager
                 Controls.Add(b);
             }
             initialDynTop = 300;
+            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
+
         }
 
         #endregion
@@ -276,14 +278,14 @@ namespace ECDLManager
                 bt_stop.Enabled = true;
                 bt_reset.Enabled = true;
             }
-            else if (!G.I.debugMod)
-                MessageBox.Show("Soubor, který jste zvolili jako vstupní má nesprávný formát nebo je jinak poškozen", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
 
+            }
         }
 
         private void tmr_seconds_Tick(object sender, EventArgs e)
         {
-            //Funkční proof-of-concept : dodělat zabarvování pro jména účastníků (vytvořit pole referencí na objekty 'label' jmén účastníků)
             tm.CountDown();
             for (int i = 0; i < timeLabelsRef.Count; i++)
             {
@@ -317,11 +319,13 @@ namespace ECDLManager
         private void bt_start_Click(object sender, EventArgs e)
         {
             tmr_seconds.Start();
+            G.I.dof.WriteInfo("Časovač zpuštěn");
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
         {
             tmr_seconds.Stop();
+            G.I.dof.WriteInfo("Časovač zastaven");
         }
 
         private void bt_reset_Click(object sender, EventArgs e)
@@ -337,6 +341,8 @@ namespace ECDLManager
                 pauseButtonRef[i].BackColor = SystemColors.Control;
                 pauseButtonRef[i].ForeColor = Color.Black;
             }
+
+            G.I.dof.WriteInfo("Byl proveden reset a obnovení původníh hodnot");
         }
 
         private void dynBt_continue(object sender, EventArgs e)
@@ -354,6 +360,7 @@ namespace ECDLManager
                 {
                     pauseButtonRef[i].BackColor = SystemColors.Control;
                     pauseButtonRef[i].ForeColor = Color.Black;
+                    G.I.dof.WriteInfo("Bylo obnoveno odčítaní u účastníka s číslem #" + i);
                 }
             }
             bt.BackColor = SystemColors.Control;
@@ -373,12 +380,15 @@ namespace ECDLManager
                 if (timeLabelsRef[i].Name == searchedlabelsName)
                     tm.PauseTimer(i);
                 if (continueButtonRef[i].Name == bt.Name)
-                    if (G.I.defaultHlm) continueButtonRef[i].BackColor = Color.Green;
+                    if (G.I.defaultHlm)
+                    {
+                        continueButtonRef[i].BackColor = Color.Green;
+                        G.I.dof.WriteInfo("Bylo pozastaveno odčítaní u účastníka s číslem #" + i);
+                    }
                     else
                     {
                         continueButtonRef[i].BackColor = Color.Black;
                         continueButtonRef[i].ForeColor = Color.White;
-
                     }
 
             }
@@ -392,19 +402,23 @@ namespace ECDLManager
 
         private void lb_about_Click(object sender, EventArgs e)
         {
-            Form about = new AboutInfo();
+            Form about = new About();
             about.Show();
+            G.I.dof.WriteInfo("Okno 'O aplikaci' bylo otevřeno z " + this.Text);
         }
         
         private void Presenter_FormClosed(object sender, FormClosedEventArgs e)
         {
             G.I.entry.WindowState = FormWindowState.Normal;
+            G.I.dof.WriteInfo("Okno " + this.Text + " bylo zavřeno");
         }
 
         private void lb_end_Click(object sender, EventArgs e)
         {
-            (sender as Label).Visible = false;
-            (sender as Label).Enabled = false;
+            Label l = (sender as Label);
+            l.Visible = false;
+            l.Enabled = false;
+            G.I.dof.WriteInfo("Label " + l.Name + "byl skryt");
         }
         #endregion
 

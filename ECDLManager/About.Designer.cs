@@ -1,6 +1,6 @@
 ﻿namespace ECDLManager
 {
-    partial class AboutInfo
+    partial class About
     {
         /// <summary>
         /// Vyžadovaná proměnná návrháře.
@@ -33,6 +33,7 @@
             this.lb_groupName = new System.Windows.Forms.Label();
             this.tb_description = new System.Windows.Forms.TextBox();
             this.lb_projectLink = new System.Windows.Forms.Label();
+            this.lb_license = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_appName
@@ -59,7 +60,7 @@
             // 
             this.lb_author.AutoSize = true;
             this.lb_author.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_author.Location = new System.Drawing.Point(102, 92);
+            this.lb_author.Location = new System.Drawing.Point(96, 92);
             this.lb_author.Name = "lb_author";
             this.lb_author.Size = new System.Drawing.Size(100, 22);
             this.lb_author.TabIndex = 2;
@@ -69,7 +70,7 @@
             // 
             this.lb_groupName.AutoSize = true;
             this.lb_groupName.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_groupName.Location = new System.Drawing.Point(102, 132);
+            this.lb_groupName.Location = new System.Drawing.Point(86, 132);
             this.lb_groupName.Name = "lb_groupName";
             this.lb_groupName.Size = new System.Drawing.Size(130, 22);
             this.lb_groupName.TabIndex = 3;
@@ -79,7 +80,7 @@
             // 
             this.tb_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_description.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tb_description.Location = new System.Drawing.Point(44, 170);
+            this.tb_description.Location = new System.Drawing.Point(44, 211);
             this.tb_description.Multiline = true;
             this.tb_description.Name = "tb_description";
             this.tb_description.ReadOnly = true;
@@ -90,19 +91,33 @@
             // lb_projectLink
             // 
             this.lb_projectLink.AutoSize = true;
+            this.lb_projectLink.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lb_projectLink.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_projectLink.Location = new System.Drawing.Point(102, 278);
+            this.lb_projectLink.Location = new System.Drawing.Point(102, 315);
             this.lb_projectLink.Name = "lb_projectLink";
-            this.lb_projectLink.Size = new System.Drawing.Size(70, 22);
+            this.lb_projectLink.Size = new System.Drawing.Size(150, 22);
             this.lb_projectLink.TabIndex = 5;
-            this.lb_projectLink.Text = "label1";
+            this.lb_projectLink.Text = "lb_projectLink";
             this.lb_projectLink.Click += new System.EventHandler(this.lb_projectLink_Click);
             // 
-            // AboutInfo
+            // lb_license
+            // 
+            this.lb_license.AutoSize = true;
+            this.lb_license.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lb_license.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.lb_license.Location = new System.Drawing.Point(76, 172);
+            this.lb_license.Name = "lb_license";
+            this.lb_license.Size = new System.Drawing.Size(110, 22);
+            this.lb_license.TabIndex = 6;
+            this.lb_license.Text = "lb_license";
+            this.lb_license.Click += new System.EventHandler(this.lb_license_Click);
+            // 
+            // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 309);
+            this.ClientSize = new System.Drawing.Size(382, 346);
+            this.Controls.Add(this.lb_license);
             this.Controls.Add(this.lb_projectLink);
             this.Controls.Add(this.tb_description);
             this.Controls.Add(this.lb_groupName);
@@ -112,7 +127,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AboutInfo";
+            this.Name = "About";
             this.Padding = new System.Windows.Forms.Padding(9);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -131,5 +146,6 @@
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.Label lb_author;
         private System.Windows.Forms.Label lb_projectLink;
+        private System.Windows.Forms.Label lb_license;
     }
 }
