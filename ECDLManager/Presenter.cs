@@ -16,13 +16,10 @@ namespace ECDLManager
         public Presenter()
         {
             InitializeComponent();
-            if (G.I.debugMod)
-                Text = "ECDL Test - DEBUG";
         }
 
         private string tempListContent = string.Empty;
         private string filePath = string.Empty;
-        private int completedLinesCounter = 0;
 
         private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
         private List<Label> nameLabelsRef = new List<Label>();
@@ -31,10 +28,6 @@ namespace ECDLManager
         private List<Button> pauseButtonRef = new List<Button>();
 
         private TimeManager tm;
-
-        
-        
-
 
         #region Other methods
         private string getFilePath()
@@ -140,7 +133,7 @@ namespace ECDLManager
 
                         return true;
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         G.I.dof.WriteWarning("Načtená data neprošla skrze úvodní filtr");
                         return false;
@@ -170,6 +163,8 @@ namespace ECDLManager
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 300;
+                if (G.I.debugMod)
+                    l.BackColor = Color.Gray;
                 l.Text = formatedStudents[i].name + "  " + formatedStudents[i].lastname;
                 l.Name = i.ToString();
                 Controls.Add(l);
@@ -189,7 +184,9 @@ namespace ECDLManager
                 l.Top = initialDynTop;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
-                l.Width = 100;
+                l.Width = 200;
+                if (G.I.debugMod)
+                    l.BackColor = Color.LightGray;
                 l.Text = tm.times[i].GetFormatedTime();
 
                 //l.Name = Global.I.numberToWordLabel[i];
@@ -300,20 +297,12 @@ namespace ECDLManager
 
                     pauseButtonRef[i].ForeColor = Color.Red;
                     pauseButtonRef[i].Enabled = false;
-
+                    
+                    tm.KillTimer(i);
                     tm.PauseTimer(i);
-                    completedLinesCounter++;
                 }
 
             }
-            if(completedLinesCounter == nameLabelsRef.Count)
-            {
-                tmr_seconds.Stop();
-                //Fire up some informational thing..? with very interesting message, that there is no more time for the test.
-                lb_end.Visible = true;
-            }
-            completedLinesCounter = 0;
-
         }
 
         private void bt_start_Click(object sender, EventArgs e)
@@ -411,6 +400,14 @@ namespace ECDLManager
         {
             G.I.entry.WindowState = FormWindowState.Normal;
             G.I.dof.WriteInfo("Okno " + this.Text + " bylo zavřeno");
+
+            formatedStudents.Clear();
+            nameLabelsRef.Clear();
+            timeLabelsRef.Clear();
+            continueButtonRef.Clear();
+            pauseButtonRef.Clear();
+
+            G.I.dof.WriteInfo("Všechna pole referencí vymazána");
         }
 
         private void lb_end_Click(object sender, EventArgs e)

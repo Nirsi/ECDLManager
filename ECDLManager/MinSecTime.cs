@@ -10,7 +10,7 @@ namespace ECDLManager
     {
         internal int min { get; private set; }
         internal int sec { get; private set; }
-        internal bool isCountable;
+        internal bool isCountable, live = true;
 
         private int initialTime;
 
@@ -60,14 +60,24 @@ namespace ECDLManager
                 sec = 0;
         }
 
+        internal void Kill()
+        {
+            live = false;
+        }
+
         internal string GetFormatedTime()
         {
-            string minZero = string.Empty, secZero = string.Empty;
+            if (live)
+            {
+                string minZero = string.Empty, secZero = string.Empty;
 
-            if (min < 10) minZero = "0"; else minZero = string.Empty;
-            if (sec < 10) secZero = "0"; else secZero = string.Empty;
-            
-            return minZero + min + ":"+ secZero + sec;
+                if (min < 10) minZero = "0"; else minZero = string.Empty;
+                if (sec < 10) secZero = "0"; else secZero = string.Empty;
+
+                return minZero + min + ":" + secZero + sec;
+            }
+            else
+                return "Čas vypršel";
             
         }
         

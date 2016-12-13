@@ -37,6 +37,11 @@ namespace ECDLManager
             times[index].Continue();
         }
 
+        internal void KillTimer(int index)
+        {
+            times[index].Kill();
+        }
+
         internal void RestoreAll()
         {
             foreach (var mst in times)

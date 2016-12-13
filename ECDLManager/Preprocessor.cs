@@ -20,8 +20,6 @@ namespace ECDLManager
         public Preprocessor()
         {
             InitializeComponent();
-            if (G.I.debugMod)
-                Text = "ECDL Generátor - DEBUG";
         }
 
         private void tb_filePath_DoubleClick(object sender, EventArgs e)
