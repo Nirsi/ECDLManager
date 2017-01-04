@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb_modulName = new System.Windows.Forms.TextBox();
             this.tb_date = new System.Windows.Forms.TextBox();
             this.tb_time = new System.Windows.Forms.TextBox();
             this.tb_filePath = new System.Windows.Forms.TextBox();
@@ -44,30 +43,25 @@
             this.tb_testDuration = new System.Windows.Forms.TextBox();
             this.lb_inputDataStatus = new System.Windows.Forms.Label();
             this.lb_about = new System.Windows.Forms.Label();
+            this.cb_module = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // tb_modulName
-            // 
-            this.tb_modulName.Location = new System.Drawing.Point(147, 113);
-            this.tb_modulName.MaxLength = 3;
-            this.tb_modulName.Name = "tb_modulName";
-            this.tb_modulName.Size = new System.Drawing.Size(188, 20);
-            this.tb_modulName.TabIndex = 0;
             // 
             // tb_date
             // 
-            this.tb_date.Location = new System.Drawing.Point(147, 166);
+            this.tb_date.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.tb_date.Location = new System.Drawing.Point(147, 161);
             this.tb_date.MaxLength = 10;
             this.tb_date.Name = "tb_date";
-            this.tb_date.Size = new System.Drawing.Size(188, 20);
+            this.tb_date.Size = new System.Drawing.Size(188, 30);
             this.tb_date.TabIndex = 2;
             // 
             // tb_time
             // 
-            this.tb_time.Location = new System.Drawing.Point(407, 113);
+            this.tb_time.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.tb_time.Location = new System.Drawing.Point(407, 110);
             this.tb_time.MaxLength = 5;
             this.tb_time.Name = "tb_time";
-            this.tb_time.Size = new System.Drawing.Size(211, 20);
+            this.tb_time.Size = new System.Drawing.Size(211, 30);
             this.tb_time.TabIndex = 1;
             // 
             // tb_filePath
@@ -175,10 +169,11 @@
             // 
             // tb_testDuration
             // 
-            this.tb_testDuration.Location = new System.Drawing.Point(497, 166);
+            this.tb_testDuration.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.tb_testDuration.Location = new System.Drawing.Point(497, 161);
             this.tb_testDuration.MaxLength = 2;
             this.tb_testDuration.Name = "tb_testDuration";
-            this.tb_testDuration.Size = new System.Drawing.Size(121, 20);
+            this.tb_testDuration.Size = new System.Drawing.Size(121, 30);
             this.tb_testDuration.TabIndex = 3;
             // 
             // lb_inputDataStatus
@@ -203,11 +198,47 @@
             this.lb_about.Text = "O Aplikaci";
             this.lb_about.Click += new System.EventHandler(this.lb_about_Click);
             // 
+            // cb_module
+            // 
+            this.cb_module.Font = new System.Drawing.Font("Consolas", 14.25F);
+            this.cb_module.FormattingEnabled = true;
+            this.cb_module.Items.AddRange(new object[] {
+            "M02",
+            "M03",
+            "M04",
+            "M05",
+            "M06",
+            "M07",
+            "M08",
+            "M09",
+            "M10",
+            "M11",
+            "M12",
+            "M13",
+            "M14",
+            "M15",
+            "M16",
+            "M17",
+            "M18",
+            "AM3",
+            "AM4",
+            "AM5",
+            "AM6",
+            "DF1",
+            "DF2",
+            "DF3"});
+            this.cb_module.Location = new System.Drawing.Point(147, 110);
+            this.cb_module.Name = "cb_module";
+            this.cb_module.Size = new System.Drawing.Size(121, 30);
+            this.cb_module.TabIndex = 15;
+            this.cb_module.Text = "M02";
+            // 
             // Preprocessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 464);
+            this.Controls.Add(this.cb_module);
             this.Controls.Add(this.lb_about);
             this.Controls.Add(this.lb_inputDataStatus);
             this.Controls.Add(this.label5);
@@ -222,7 +253,6 @@
             this.Controls.Add(this.tb_filePath);
             this.Controls.Add(this.tb_time);
             this.Controls.Add(this.tb_date);
-            this.Controls.Add(this.tb_modulName);
             this.Name = "Preprocessor";
             this.Text = "ECDL Generátor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Preprocessor_FormClosed);
@@ -232,8 +262,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tb_modulName;
         private System.Windows.Forms.TextBox tb_date;
         private System.Windows.Forms.TextBox tb_time;
         private System.Windows.Forms.TextBox tb_filePath;
@@ -249,6 +277,7 @@
         private System.Windows.Forms.TextBox tb_testDuration;
         private System.Windows.Forms.Label lb_inputDataStatus;
         private System.Windows.Forms.Label lb_about;
+        private System.Windows.Forms.ComboBox cb_module;
     }
 }
 

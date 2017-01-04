@@ -92,16 +92,6 @@ namespace ECDLManager
                 bt_saveFormatedData.Enabled = true;
                 lb_inputDataStatus.Text = "Vstuptní data NAČTENA";
                 lb_inputDataStatus.ForeColor = Color.Green;
-
-
-                if (G.I.debugMod)
-                {
-                    foreach (var rs in rawStudents)
-                    {
-                        //tempListContent += "students name: " + rs.name + ", students lastname: " + rs.lastname;
-                    }
-                    //G.I.dof.WriteInfo("Načtená data do generátoru\n" + tempListContent);
-                }
             }
         }
 
@@ -117,20 +107,21 @@ namespace ECDLManager
                 {
                     using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
                     {
-                        //modul,date,time,exam duration
-                        sw.WriteLine(tb_modulName.Text + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
+                        //module,date,time,exam duration
+                        sw.WriteLine(cb_module.SelectedItem + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
                         foreach (RawStudent rs in rawStudents)
                         {
-                            //student's name, student's lastname, exam duration in minutes
-                            sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text);
+                            //student's name, student's lastname, exam duration in minutes, module
+                            sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text + ";" + cb_module.SelectedItem);
                         }
                     }
+                    G.I.dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
                 }
                 catch (Exception ex)
                 {
                     G.I.dof.WriteError(ex.ToString());
                 }
-                G.I.dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
+                
             }
             else
                 G.I.dof.WriteWarning("Nebyla vybrána žádná cesta pro uložení dat");
