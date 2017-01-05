@@ -20,12 +20,17 @@ namespace ECDLManager
 
         private string tempListContent = string.Empty;
         private string filePath = string.Empty;
+        private int centralXOffset = -5, centralYOffset = -5;
 
         private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
+        private List<Label> moduleLabelsRef = new List<Label>();
         private List<Label> nameLabelsRef = new List<Label>();
         private List<Label> timeLabelsRef = new List<Label>();
+        
         private List<Button> continueButtonRef = new List<Button>();
         private List<Button> pauseButtonRef = new List<Button>();
+        private List<Button> endButtonRef = new List<Button>();
+
 
         private TimeManager tm;
 
@@ -47,8 +52,27 @@ namespace ECDLManager
                 MessageBox.Show(ex.ToString());
                 return string.Empty;
             }
-        } 
-        
+        }
+
+        private void killLine(int index)
+        {
+            moduleLabelsRef[index].ForeColor = Color.Red;
+            timeLabelsRef[index].ForeColor = Color.Red;
+            nameLabelsRef[index].ForeColor = Color.Red;
+
+            continueButtonRef[index].ForeColor = Color.Red;
+            continueButtonRef[index].Enabled = false;
+
+            pauseButtonRef[index].ForeColor = Color.Red;
+            pauseButtonRef[index].Enabled = false;
+
+            endButtonRef[index].ForeColor = Color.Red;
+            endButtonRef[index].Enabled = false;
+
+            tm.PauseTimer(index);
+            tm.KillTimer(index);
+        }
+
         #endregion
 
         #region IO operations
@@ -67,7 +91,6 @@ namespace ECDLManager
                     //modul,date,time of beginning,exam duration
                     string[] _data = line.Split(';');
 
-                    lb_modul.Text = "Modul: " + _data[0];
                     lb_date.Text = "Datum: " + _data[1];
                     lb_examBeginning.Text = "Čas zahájení: " + _data[2];
                     lb_examDuration.Text = "Trvání testu: " + _data[3] + " minut";
@@ -77,21 +100,12 @@ namespace ECDLManager
                     while ((line = sr.ReadLine()) != null)
                     {
                         string[] data = line.Split(';');
-                        formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2])));
+                        formatedStudents.Add(new FormatedStudent(data[0], data[1], int.Parse(data[2]), data[3]));
                     }
                     tm = new TimeManager(formatedStudents);
                     (sender as Button).Enabled = false;
 
-
-                    if (G.I.debugMod)
-                    {
-                        foreach (var item in formatedStudents)
-                        {
-                           // tempListContent += "||| Student name: " + item.name + " student lastname: " + item.lastname + " student exam-span: " + item.examDuration + " |||";
-                        }
-                        //G.I.dof.WriteInfo("Načtená formátovaná data\n" + tempListContent);
-                    }
-
+                    GenerateModulesOfStudens();
                     GenerateNamesOfStudents();
                     GenerateTimeOfStudents();
                     GenerateButtons();
@@ -117,25 +131,23 @@ namespace ECDLManager
                         //modul,date,time of beginning,exam duration
                         string[] data = sr.ReadLine().Split(';');
 
-                        lb_modul.Text = "Modul: " + data[0];
                         lb_date.Text = "Datum: " + data[1];
                         lb_examBeginning.Text = "Čas zahájení: " + data[2];
                         lb_examDuration.Text = "Trvání testu: " + data[3] + " minut";
 
-                        lb_modul.Text = "Modul: ";
                         lb_date.Text = "Datum: ";
                         lb_examBeginning.Text = "Čas zahájení: ";
                         lb_examDuration.Text = "Trvání testu: ";
 
                         data = sr.ReadLine().Split(';');
                         FormatedStudent[] fs = new FormatedStudent[1];
-                        fs[0] = new FormatedStudent(data[0], data[1], int.Parse(data[2]));
+                        fs[0] = new FormatedStudent(data[0], data[1], int.Parse(data[2]), data[3]);
 
                         return true;
                     }
                     catch
                     {
-                        G.I.dof.WriteWarning("Načtená data neprošla skrze úvodní filtr");
+                        G.I.dof.WriteError("Načtená data neprošla skrze úvodní filtr");
                         return false;
                     }
                 }
@@ -151,15 +163,37 @@ namespace ECDLManager
         int initialTop = 200;
 
         int initialDynTop = 200;
-        
+
+        private void GenerateModulesOfStudens()
+        {
+            for (int i = 0; i < formatedStudents.Count; i++)
+            {
+                Label l = new Label();
+                l.Left = (initialLeft - 60) + centralXOffset;
+                l.Top = initialDynTop + centralYOffset;
+                l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
+                l.Height = 35;
+                l.Width = 60;
+                if (G.I.debugMod)
+                    l.BackColor = Color.LightBlue;
+                l.Text = formatedStudents[i].module;
+                l.Name = i.ToString();
+                moduleLabelsRef.Add(l);
+                Controls.Add(l);
+                initialDynTop += l.Height + 7;
+            }
+            initialDynTop = initialTop;
+            G.I.dof.WriteInfo("byly vygenerovány labely s moduly účastníků");
+
+        }
 
         private void GenerateNamesOfStudents()
         {
             for (int i = 0; i < formatedStudents.Count; i++)
             {
                 Label l = new Label();
-                l.Left = initialLeft;
-                l.Top = initialDynTop;
+                l.Left = initialLeft + centralXOffset;
+                l.Top = initialDynTop + centralYOffset;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 300;
@@ -180,8 +214,8 @@ namespace ECDLManager
             for (int i = 0; i < tm.times.Count; i++)
             {
                 Label l = new Label();
-                l.Left = initialLeft + 325;
-                l.Top = initialDynTop;
+                l.Left = (initialLeft + 325) + centralXOffset;
+                l.Top = initialDynTop + centralYOffset;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 200;
@@ -210,8 +244,8 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = initialLeft + 760;
-                b.Top = initialDynTop;
+                b.Left = (initialLeft + 690) + centralXOffset;
+                b.Top = initialDynTop + centralYOffset;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 38;
                 b.Width = 175;
@@ -219,8 +253,6 @@ namespace ECDLManager
                 b.TextAlign = ContentAlignment.TopCenter;
                 b.FlatStyle = FlatStyle.Flat;
                 b.Click += new EventHandler(dynBt_continue);
-
-                //b.Name = Global.I.numberToWordContinue[i];
                 b.Name = i.ToString();
 
                 continueButtonRef.Add(b);
@@ -238,8 +270,8 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = initialLeft + 570;
-                b.Top = initialDynTop;
+                b.Left = (initialLeft + 530) + centralXOffset;
+                b.Top = initialDynTop + centralYOffset;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 38;
                 b.Width = 125;
@@ -247,9 +279,7 @@ namespace ECDLManager
                 b.TextAlign = ContentAlignment.TopCenter;
                 b.FlatStyle = FlatStyle.Flat;
                 b.Click += new EventHandler(dynBt_pause);
-                //b.Name = Global.I.numberToWordPause[i];
                 b.Name = i.ToString();
-
                 pauseButtonRef.Add(b);
                 initialDynTop += b.Height + 4;
             }
@@ -257,7 +287,33 @@ namespace ECDLManager
             {
                 Controls.Add(b);
             }
-            initialDynTop = 300;
+            initialDynTop = initialTop;
+            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
+
+            //end buttons
+            for (int i = 0; i < tm.times.Count; i++)
+            {
+
+                Button b = new Button();
+                b.Left = (initialLeft + 900) + centralXOffset;
+                b.Top = initialDynTop + centralYOffset;
+                b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
+                b.Height = 38;
+                b.Width = 150;
+                b.Text = "Ukončit";
+                b.TextAlign = ContentAlignment.TopCenter;
+                b.FlatStyle = FlatStyle.Flat;
+                b.Click += new EventHandler(dynBt_end);
+                b.Name = i.ToString();
+
+                endButtonRef.Add(b);
+                initialDynTop += b.Height + 4;
+            }
+            foreach (var b in endButtonRef)
+            {
+                Controls.Add(b);
+            }
+            initialDynTop = initialTop;
             G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
 
         }
@@ -265,6 +321,20 @@ namespace ECDLManager
         #endregion
 
         #region event handlers
+
+        private void tmr_seconds_Tick(object sender, EventArgs e)
+        {
+            tm.CountDown();
+            for (int i = 0; i < timeLabelsRef.Count; i++)
+            {
+                timeLabelsRef[i].Text = tm.times[i].GetFormatedTime();
+                if(tm.times[i].GetFormatedTime() == "00:00")
+                {
+                    killLine(i);
+                }
+
+            }
+        }
 
         private void bt_loadFile_Click(object sender, EventArgs e)
         {
@@ -277,30 +347,6 @@ namespace ECDLManager
             }
             else
             {
-
-            }
-        }
-
-        private void tmr_seconds_Tick(object sender, EventArgs e)
-        {
-            tm.CountDown();
-            for (int i = 0; i < timeLabelsRef.Count; i++)
-            {
-                timeLabelsRef[i].Text = tm.times[i].GetFormatedTime();
-                if(tm.times[i].GetFormatedTime() == "00:00")
-                {
-                    timeLabelsRef[i].ForeColor = Color.Red;
-                    nameLabelsRef[i].ForeColor = Color.Red;
-
-                    continueButtonRef[i].ForeColor = Color.Red;
-                    continueButtonRef[i].Enabled = false;
-
-                    pauseButtonRef[i].ForeColor = Color.Red;
-                    pauseButtonRef[i].Enabled = false;
-                    
-                    tm.KillTimer(i);
-                    tm.PauseTimer(i);
-                }
 
             }
         }
@@ -338,7 +384,6 @@ namespace ECDLManager
         {
             Button bt = (Button)sender;
             string searchedlabelsName;
-            //searchedlabelsName = Global.I.numberToWordLabel[Global.I.wordToNumberContinue[bt.Name]];
             searchedlabelsName = bt.Name;
 
             for (int i = 0; i < timeLabelsRef.Count; i++)
@@ -360,8 +405,6 @@ namespace ECDLManager
 
             Button bt = (Button)sender;
             string searchedlabelsName;
-
-            //searchedlabelsName= Global.I.numberToWordLabel[Global.I.wordToNumberPause[bt.Name]];
             searchedlabelsName = bt.Name;
 
             for (int i = 0; i < timeLabelsRef.Count; i++)
@@ -386,6 +429,19 @@ namespace ECDLManager
             {
                 bt.BackColor = Color.Black;
                 bt.ForeColor = Color.White;
+            }
+        }
+
+        private void dynBt_end(object sender, EventArgs e)
+        {
+            Button bt = (Button)sender;
+            string searchedlabelsName;
+            searchedlabelsName = bt.Name;
+
+            for (int i = 0; i < timeLabelsRef.Count; i++)
+            {
+                if (timeLabelsRef[i].Name == searchedlabelsName)
+                    tm.EndTimer(i);
             }
         }
 

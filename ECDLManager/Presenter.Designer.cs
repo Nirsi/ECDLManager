@@ -32,7 +32,6 @@
             this.lb_examDuration = new System.Windows.Forms.Label();
             this.lb_examBeginning = new System.Windows.Forms.Label();
             this.lb_date = new System.Windows.Forms.Label();
-            this.lb_modul = new System.Windows.Forms.Label();
             this.bt_start = new System.Windows.Forms.Button();
             this.bt_stop = new System.Windows.Forms.Button();
             this.bt_reset = new System.Windows.Forms.Button();
@@ -46,7 +45,7 @@
             // 
             this.lb_examDuration.AutoSize = true;
             this.lb_examDuration.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_examDuration.Location = new System.Drawing.Point(246, 103);
+            this.lb_examDuration.Location = new System.Drawing.Point(12, 80);
             this.lb_examDuration.Name = "lb_examDuration";
             this.lb_examDuration.Size = new System.Drawing.Size(269, 37);
             this.lb_examDuration.TabIndex = 20;
@@ -56,7 +55,7 @@
             // 
             this.lb_examBeginning.AutoSize = true;
             this.lb_examBeginning.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_examBeginning.Location = new System.Drawing.Point(246, 58);
+            this.lb_examBeginning.Location = new System.Drawing.Point(786, 80);
             this.lb_examBeginning.Name = "lb_examBeginning";
             this.lb_examBeginning.Size = new System.Drawing.Size(269, 37);
             this.lb_examBeginning.TabIndex = 19;
@@ -66,21 +65,11 @@
             // 
             this.lb_date.AutoSize = true;
             this.lb_date.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_date.Location = new System.Drawing.Point(246, 8);
+            this.lb_date.Location = new System.Drawing.Point(450, 80);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(143, 37);
             this.lb_date.TabIndex = 18;
             this.lb_date.Text = "Datum: ";
-            // 
-            // lb_modul
-            // 
-            this.lb_modul.AutoSize = true;
-            this.lb_modul.Font = new System.Drawing.Font("Consolas", 24F);
-            this.lb_modul.Location = new System.Drawing.Point(12, 9);
-            this.lb_modul.Name = "lb_modul";
-            this.lb_modul.Size = new System.Drawing.Size(143, 37);
-            this.lb_modul.TabIndex = 17;
-            this.lb_modul.Text = "Modul: ";
             // 
             // bt_start
             // 
@@ -126,7 +115,7 @@
             // 
             this.bt_loadFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_loadFile.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bt_loadFile.Location = new System.Drawing.Point(12, 58);
+            this.bt_loadFile.Location = new System.Drawing.Point(12, 12);
             this.bt_loadFile.Name = "bt_loadFile";
             this.bt_loadFile.Size = new System.Drawing.Size(198, 37);
             this.bt_loadFile.TabIndex = 24;
@@ -168,7 +157,6 @@
             this.Controls.Add(this.lb_examDuration);
             this.Controls.Add(this.lb_examBeginning);
             this.Controls.Add(this.lb_date);
-            this.Controls.Add(this.lb_modul);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Presenter";
@@ -184,7 +172,6 @@
         private System.Windows.Forms.Label lb_examDuration;
         private System.Windows.Forms.Label lb_examBeginning;
         private System.Windows.Forms.Label lb_date;
-        private System.Windows.Forms.Label lb_modul;
         private System.Windows.Forms.Button bt_start;
         private System.Windows.Forms.Button bt_stop;
         private System.Windows.Forms.Button bt_reset;

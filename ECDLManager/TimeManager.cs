@@ -56,5 +56,9 @@ namespace ECDLManager
                 mst.Reset();
             }
         }
+        internal void EndTimer(int index)
+        {
+            times[index].SetToMinimal();
+        }
     }
 }

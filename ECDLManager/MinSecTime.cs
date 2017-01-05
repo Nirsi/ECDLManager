@@ -65,6 +65,12 @@ namespace ECDLManager
             live = false;
         }
 
+        internal void SetToMinimal()
+        {
+            min = 0;
+            sec = 1;
+        }
+
         internal string GetFormatedTime()
         {
             if (live)
