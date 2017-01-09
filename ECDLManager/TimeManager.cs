@@ -9,14 +9,14 @@ namespace ECDLManager
     class TimeManager
     {
         internal List<MinSecTime> times = new List<MinSecTime>();
-        List<FormatedStudent> passedStudents = new List<FormatedStudent>();
 
-        internal TimeManager(List<FormatedStudent> passedStudents)
+        internal TimeManager(List<FormatedStudent> formatedStudents)
         {
-            foreach (var fs in passedStudents)
+            foreach (var fs in formatedStudents)
             {
                 times.Add(new MinSecTime(fs.examDuration));
             }
+            G.I.dof.WriteInfo("Byly vygenerovány všechny časy pomocí TimeManageru");
         }
 
         internal void CountDown()

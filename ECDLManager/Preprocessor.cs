@@ -22,38 +22,7 @@ namespace ECDLManager
             InitializeComponent();
         }
 
-        private void tb_filePath_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                DialogResult result = ofd_inputFile.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    tb_filePath.Text = ofd_inputFile.FileName;
-                    bt_loadData.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("nebyla vybrána žádná cesta k souboru");
-                }
-            }
-            catch (Exception ex)
-            {
-                G.I.dof.WriteError(ex.ToString());
-            }
-        }
-
-
-        private void bt_loadData_Click(object sender, EventArgs e)
-        {
-            if (LoadAndCheckInput())
-            { 
-                LoadRawData(sender);
-                G.I.dof.WriteInfo("Data do generátoru načtena");
-            }
-            else
-                G.I.dof.WriteWarning("Soubor, který byl načten do generátoru má nesprávný formát nebo je požkozen");
-        }
+       
 
         #region IO operations
 
@@ -108,7 +77,7 @@ namespace ECDLManager
                     using (StreamWriter sw = new StreamWriter(new FileStream(fbd.SelectedPath + @"\formatedList.csv", FileMode.Create, FileAccess.ReadWrite), Encoding.Default))
                     {
                         //module,date,time,exam duration
-                        sw.WriteLine(cb_module.SelectedItem + ";" + tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
+                        sw.WriteLine(tb_date.Text + ";" + tb_time.Text + ";" + tb_testDuration.Text);
                         foreach (RawStudent rs in rawStudents)
                         {
                             //student's name, student's lastname, exam duration in minutes, module
@@ -121,10 +90,65 @@ namespace ECDLManager
                 {
                     G.I.dof.WriteError(ex.ToString());
                 }
-                
             }
             else
                 G.I.dof.WriteWarning("Nebyla vybrána žádná cesta pro uložení dat");
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void tb_filePath_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = ofd_inputFile.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tb_filePath.Text = ofd_inputFile.FileName;
+                    bt_loadData.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("nebyla vybrána žádná cesta k souboru");
+                }
+            }
+            catch (Exception ex)
+            {
+                G.I.dof.WriteError(ex.ToString());
+            }
+        }
+
+
+        private void bt_loadData_Click(object sender, EventArgs e)
+        {
+            if (LoadAndCheckInput())
+            {
+                LoadRawData(sender);
+                G.I.dof.WriteInfo("Data do generátoru načtena");
+            }
+            else
+                G.I.dof.WriteWarning("Soubor, který byl načten do generátoru má nesprávný formát nebo je požkozen");
+        }
+
+        private void bt_saveFormatedData_Click(object sender, EventArgs e)
+        {
+            GenerateAndSaveFormatedData();
+
+        }
+
+        private void lb_about_Click(object sender, EventArgs e)
+        {
+            Form about = new About();
+            about.Show();
+            G.I.dof.WriteInfo("Bylo otevřeno okno 'O aplikaci'");
+        }
+
+        private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            G.I.entry.WindowState = FormWindowState.Normal;
+            G.I.dof.WriteInfo("Okno generátoru bylo zavřeno");
         }
 
         #endregion
@@ -147,27 +171,6 @@ namespace ECDLManager
         }
 
 
-        #endregion
-
-
-        #region Event handlers
-        private void bt_saveFormatedData_Click(object sender, EventArgs e)
-        {
-            GenerateAndSaveFormatedData();
-
-        }
-        private void lb_about_Click(object sender, EventArgs e)
-        {
-            Form about = new About();
-            about.Show();
-            G.I.dof.WriteInfo("Bylo otevřeno okno 'O aplikaci'");
-        }
-
-        private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            G.I.entry.WindowState = FormWindowState.Normal;
-            G.I.dof.WriteInfo("Oknco generátoru bylo zavřeno");
-        } 
         #endregion
     }
 }

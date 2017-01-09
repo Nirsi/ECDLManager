@@ -115,7 +115,7 @@
             // 
             this.bt_loadFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_loadFile.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bt_loadFile.Location = new System.Drawing.Point(12, 12);
+            this.bt_loadFile.Location = new System.Drawing.Point(19, 12);
             this.bt_loadFile.Name = "bt_loadFile";
             this.bt_loadFile.Size = new System.Drawing.Size(198, 37);
             this.bt_loadFile.TabIndex = 24;
