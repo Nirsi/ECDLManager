@@ -19,7 +19,7 @@ namespace ECDLManager
             {
                 if (instance == null)
                 {
-                    
+
                     instance = new G();
                 }
                 return instance;
@@ -44,5 +44,15 @@ namespace ECDLManager
         /// Globalised instance Entry form 
         /// </summary>
         public Entry entry;
+        /// <summary>
+        /// X offset for dynamic block content in presenter
+        /// </summary>
+        public int PresenterContentBlockXOffset = 0;
+        /// <summary>
+        /// Y offset for dynamic block content in presenter
+        /// </summary>
+        public int PresenterContentBlockYOffset = 0;
+
+
     }
 }

@@ -34,11 +34,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tp_menu = new System.Windows.Forms.TabPage();
             this.tp_options = new System.Windows.Forms.TabPage();
-            this.chb_debugOnOff = new System.Windows.Forms.CheckBox();
             this.chb_highlightColor = new System.Windows.Forms.CheckBox();
+            this.chb_debugOnOff = new System.Windows.Forms.CheckBox();
+            this.nud_contentBlockOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nud_contentBlockOffsetY = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tp_menu.SuspendLayout();
             this.tp_options.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_contentBlockOffsetX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_contentBlockOffsetY)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_startGenerator
@@ -100,6 +106,10 @@
             // tp_options
             // 
             this.tp_options.BackColor = System.Drawing.SystemColors.Control;
+            this.tp_options.Controls.Add(this.nud_contentBlockOffsetY);
+            this.tp_options.Controls.Add(this.label2);
+            this.tp_options.Controls.Add(this.label1);
+            this.tp_options.Controls.Add(this.nud_contentBlockOffsetX);
             this.tp_options.Controls.Add(this.chb_highlightColor);
             this.tp_options.Controls.Add(this.chb_debugOnOff);
             this.tp_options.Location = new System.Drawing.Point(4, 22);
@@ -108,20 +118,6 @@
             this.tp_options.Size = new System.Drawing.Size(437, 137);
             this.tp_options.TabIndex = 1;
             this.tp_options.Text = "Nastavení";
-            // 
-            // chb_debugOnOff
-            // 
-            this.chb_debugOnOff.AutoSize = true;
-            this.chb_debugOnOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chb_debugOnOff.Font = new System.Drawing.Font("Consolas", 11F);
-            this.chb_debugOnOff.ForeColor = System.Drawing.Color.Red;
-            this.chb_debugOnOff.Location = new System.Drawing.Point(6, 6);
-            this.chb_debugOnOff.Name = "chb_debugOnOff";
-            this.chb_debugOnOff.Size = new System.Drawing.Size(192, 22);
-            this.chb_debugOnOff.TabIndex = 2;
-            this.chb_debugOnOff.Text = "Režim DEBUG je vypnut";
-            this.chb_debugOnOff.UseVisualStyleBackColor = true;
-            this.chb_debugOnOff.CheckedChanged += new System.EventHandler(this.chb_debugOnOff_CheckedChanged);
             // 
             // chb_highlightColor
             // 
@@ -137,6 +133,74 @@
             this.chb_highlightColor.UseVisualStyleBackColor = true;
             this.chb_highlightColor.CheckedChanged += new System.EventHandler(this.chb_highlightColor_CheckedChanged);
             // 
+            // chb_debugOnOff
+            // 
+            this.chb_debugOnOff.AutoSize = true;
+            this.chb_debugOnOff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chb_debugOnOff.Font = new System.Drawing.Font("Consolas", 11F);
+            this.chb_debugOnOff.ForeColor = System.Drawing.Color.Red;
+            this.chb_debugOnOff.Location = new System.Drawing.Point(6, 6);
+            this.chb_debugOnOff.Name = "chb_debugOnOff";
+            this.chb_debugOnOff.Size = new System.Drawing.Size(192, 22);
+            this.chb_debugOnOff.TabIndex = 2;
+            this.chb_debugOnOff.Text = "Režim DEBUG je vypnut";
+            this.chb_debugOnOff.UseVisualStyleBackColor = true;
+            this.chb_debugOnOff.CheckedChanged += new System.EventHandler(this.chb_debugOnOff_CheckedChanged);
+            // 
+            // nud_contentBlockOffsetX
+            // 
+            this.nud_contentBlockOffsetX.Location = new System.Drawing.Point(117, 62);
+            this.nud_contentBlockOffsetX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nud_contentBlockOffsetX.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nud_contentBlockOffsetX.Name = "nud_contentBlockOffsetX";
+            this.nud_contentBlockOffsetX.Size = new System.Drawing.Size(120, 20);
+            this.nud_contentBlockOffsetX.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 11F);
+            this.label1.Location = new System.Drawing.Point(7, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 18);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Odsazení X: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Consolas", 11F);
+            this.label2.Location = new System.Drawing.Point(7, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 18);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Odsazení Y: ";
+            // 
+            // nud_contentBlockOffsetY
+            // 
+            this.nud_contentBlockOffsetY.Location = new System.Drawing.Point(117, 88);
+            this.nud_contentBlockOffsetY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nud_contentBlockOffsetY.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nud_contentBlockOffsetY.Name = "nud_contentBlockOffsetY";
+            this.nud_contentBlockOffsetY.Size = new System.Drawing.Size(120, 20);
+            this.nud_contentBlockOffsetY.TabIndex = 7;
+            // 
             // Entry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,6 +215,8 @@
             this.tp_menu.PerformLayout();
             this.tp_options.ResumeLayout(false);
             this.tp_options.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_contentBlockOffsetX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_contentBlockOffsetY)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -165,5 +231,9 @@
         private System.Windows.Forms.TabPage tp_options;
         private System.Windows.Forms.CheckBox chb_debugOnOff;
         private System.Windows.Forms.CheckBox chb_highlightColor;
+        private System.Windows.Forms.NumericUpDown nud_contentBlockOffsetY;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown nud_contentBlockOffsetX;
     }
 }

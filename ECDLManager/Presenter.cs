@@ -20,7 +20,7 @@ namespace ECDLManager
 
         private string tempListContent = string.Empty;
         private string filePath = string.Empty;
-        private int centralXOffset = -5, centralYOffset = -5;
+        private int XOffset = G.I.PresenterContentBlockXOffset, YOffset = G.I.PresenterContentBlockYOffset;
 
         private static List<FormatedStudent> formatedStudents = new List<FormatedStudent>();
 
@@ -144,7 +144,6 @@ namespace ECDLManager
                         FormatedStudent[] fs = new FormatedStudent[1];
                         fs[0] = new FormatedStudent(data[0], data[1], int.Parse(data[2]), data[3]);
 
-                        MessageBox.Show("pause");
                         return true;
                     }
                     catch
@@ -171,8 +170,8 @@ namespace ECDLManager
             for (int i = 0; i < formatedStudents.Count; i++)
             {
                 Label l = new Label();
-                l.Left = (initialLeft - 60) + centralXOffset;
-                l.Top = initialDynTop + centralYOffset;
+                l.Left = (initialLeft - 60) + XOffset;
+                l.Top = initialDynTop + YOffset;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 60;
@@ -194,8 +193,8 @@ namespace ECDLManager
             for (int i = 0; i < formatedStudents.Count; i++)
             {
                 Label l = new Label();
-                l.Left = initialLeft + centralXOffset;
-                l.Top = initialDynTop + centralYOffset;
+                l.Left = initialLeft + XOffset;
+                l.Top = initialDynTop + YOffset;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 300;
@@ -216,8 +215,8 @@ namespace ECDLManager
             for (int i = 0; i < tm.times.Count; i++)
             {
                 Label l = new Label();
-                l.Left = (initialLeft + 325) + centralXOffset;
-                l.Top = initialDynTop + centralYOffset;
+                l.Left = (initialLeft + 325) + XOffset;
+                l.Top = initialDynTop + YOffset;
                 l.Font = new Font("Consolas", 20.0f, FontStyle.Regular);
                 l.Height = 35;
                 l.Width = 200;
@@ -246,8 +245,8 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = (initialLeft + 690) + centralXOffset;
-                b.Top = initialDynTop + centralYOffset;
+                b.Left = (initialLeft + 690) + XOffset;
+                b.Top = initialDynTop + YOffset;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 38;
                 b.Width = 175;
@@ -272,8 +271,8 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = (initialLeft + 530) + centralXOffset;
-                b.Top = initialDynTop + centralYOffset;
+                b.Left = (initialLeft + 530) + XOffset;
+                b.Top = initialDynTop + YOffset;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 38;
                 b.Width = 125;
@@ -297,8 +296,8 @@ namespace ECDLManager
             {
 
                 Button b = new Button();
-                b.Left = (initialLeft + 900) + centralXOffset;
-                b.Top = initialDynTop + centralYOffset;
+                b.Left = (initialLeft + 900) + XOffset;
+                b.Top = initialDynTop + YOffset;
                 b.Font = new Font("Consolas", 21.0f, FontStyle.Regular);
                 b.Height = 38;
                 b.Width = 150;

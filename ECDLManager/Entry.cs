@@ -31,6 +31,9 @@ namespace ECDLManager
 
         private void bt_startTest_Click(object sender, EventArgs e)
         {
+            G.I.PresenterContentBlockXOffset = Convert.ToInt32(nud_contentBlockOffsetX.Value);
+            G.I.PresenterContentBlockYOffset = Convert.ToInt32(nud_contentBlockOffsetY.Value);
+
 
             Form pres = new Presenter();
             pres.Show();
