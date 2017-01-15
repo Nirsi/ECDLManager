@@ -1,6 +1,6 @@
 # ECDLManager
 Aplikace pro použití při zkouškách ECDL. Aplikace je rozdělena do dvou částí "Generátor" a Test
-ssdfsdf
+
 ###Generátor
 Tato část slouží ke generování zdrojového souboru, ze seznamu jmén účastníků.
 
