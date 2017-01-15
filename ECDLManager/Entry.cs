@@ -15,7 +15,8 @@ namespace ECDLManager
         public Entry()
         {
             InitializeComponent();
-            G.I.dof = new DebugOutputForm();
+            G.I.Dof = new DebugOutputForm();
+            Icon = new Icon("ecdl_ico.ico");
         }
 
         #region Event handlers
@@ -25,7 +26,7 @@ namespace ECDLManager
             Form preproc = new Preprocessor();
             preproc.Show();
             WindowState = FormWindowState.Minimized;
-            G.I.dof.WriteInfo("Okno generátoru bylo otevřeno");
+            G.I.Dof.WriteInfo("Okno generátoru bylo otevřeno");
 
         }
 
@@ -37,7 +38,7 @@ namespace ECDLManager
 
             Form pres = new Presenter();
             pres.Show();
-            G.I.dof.WriteInfo("Okno testu bylo otevřeno");
+            G.I.Dof.WriteInfo("Okno testu bylo otevřeno");
 
             WindowState = FormWindowState.Minimized;
 
@@ -51,7 +52,7 @@ namespace ECDLManager
                 chb_debugOnOff.ForeColor = Color.Green;
                 chb_debugOnOff.Text = "Režim DEBUG je zapnut";
                 Text = "ECDL DEBUG";
-                G.I.dof.Show();
+                G.I.Dof.Show();
             }
             else
             {
@@ -59,7 +60,7 @@ namespace ECDLManager
                 chb_debugOnOff.ForeColor = Color.Red;
                 chb_debugOnOff.Text = "Režim DEBUG je vypnut";
                 Text = "ECDL";
-                G.I.dof.Hide();
+                G.I.Dof.Hide();
             }
         }
 
@@ -70,14 +71,14 @@ namespace ECDLManager
                 G.I.defaultHlm = false;
                 chb_highlightColor.ForeColor = Color.Black;
                 chb_highlightColor.Text = "Zvýraznění pozastavených v testu černá/bílá";
-                G.I.dof.WriteInfo("Změna zvýraznění pozastaveného na černá/bílá");
+                G.I.Dof.WriteInfo("Změna zvýraznění pozastaveného na černá/bílá");
             }
             else
             {
                 G.I.defaultHlm = true;
                 chb_highlightColor.ForeColor = Color.DarkGreen;
                 chb_highlightColor.Text = "Zvýraznění pozastavených v testu zelená/červená";
-                G.I.dof.WriteInfo("Změna zvýraznění pozastaveného na zelená/červená");
+                G.I.Dof.WriteInfo("Změna zvýraznění pozastaveného na zelená/červená");
             }
 
         }
@@ -86,11 +87,38 @@ namespace ECDLManager
         {
             Form about = new About();
             about.Show();
-            G.I.dof.WriteInfo("Okno 'O aplikaci' otevřeno z menu");
-        } 
+            G.I.Dof.WriteInfo("Okno 'O aplikaci' otevřeno z menu");
+        }
+
 
         #endregion
+        
+        #region ToolTip handlers
+        ToolTip infoToolTip;
 
+        private void lb_testOffsetX_MouseEnter(object sender, EventArgs e)
+        {
+            infoToolTip = new ToolTip();
+            infoToolTip.IsBalloon = true;
+            infoToolTip.Show("Nastavení horizontálního odsazení v pixelech vygenerováného bloku v Testu", (Label)sender, 20, -35, 10000);
+        }
 
+        private void lb_testOffsetX_MouseLeave(object sender, EventArgs e)
+        {
+            infoToolTip.Dispose();
+        }
+
+        private void lb_testOffsetY_MouseEnter(object sender, EventArgs e)
+        {
+            infoToolTip = new ToolTip();
+            infoToolTip.IsBalloon = true;
+            infoToolTip.Show("Nastavení vertikálního odsazení v pixelech vygenerováného bloku v Testu", (Label)sender, 20, -35, 10000);
+        }
+
+        private void lb_testOffsetY_MouseLeave(object sender, EventArgs e)
+        {
+            infoToolTip.Dispose();
+        } 
+        #endregion
     }
 }

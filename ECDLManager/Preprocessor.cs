@@ -20,9 +20,9 @@ namespace ECDLManager
         public Preprocessor()
         {
             InitializeComponent();
+            Icon = new Icon("ecdl_ico.ico");
         }
 
-       
 
         #region IO operations
 
@@ -39,7 +39,7 @@ namespace ECDLManager
                 }
                 catch (Exception ex)
                 {
-                    G.I.dof.WriteError(ex.ToString());
+                    G.I.Dof.WriteError(ex.ToString());
                     tb_filePath.Text = string.Empty;
                     return false;
                 }
@@ -84,15 +84,15 @@ namespace ECDLManager
                             sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text + ";" + cb_module.SelectedItem);
                         }
                     }
-                    G.I.dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
+                    G.I.Dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
                 }
                 catch (Exception ex)
                 {
-                    G.I.dof.WriteError(ex.ToString());
+                    G.I.Dof.WriteError(ex.ToString());
                 }
             }
             else
-                G.I.dof.WriteWarning("Nebyla vybrána žádná cesta pro uložení dat");
+                G.I.Dof.WriteWarning("Nebyla vybrána žádná cesta pro uložení dat");
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace ECDLManager
             }
             catch (Exception ex)
             {
-                G.I.dof.WriteError(ex.ToString());
+                G.I.Dof.WriteError(ex.ToString());
             }
         }
 
@@ -126,10 +126,10 @@ namespace ECDLManager
             if (LoadAndCheckInput())
             {
                 LoadRawData(sender);
-                G.I.dof.WriteInfo("Data do generátoru načtena");
+                G.I.Dof.WriteInfo("Data do generátoru načtena");
             }
             else
-                G.I.dof.WriteWarning("Soubor, který byl načten do generátoru má nesprávný formát nebo je požkozen");
+                G.I.Dof.WriteWarning("Soubor, který byl načten do generátoru má nesprávný formát nebo je požkozen");
         }
 
         private void bt_saveFormatedData_Click(object sender, EventArgs e)
@@ -142,18 +142,18 @@ namespace ECDLManager
         {
             Form about = new About();
             about.Show();
-            G.I.dof.WriteInfo("Bylo otevřeno okno 'O aplikaci'");
+            G.I.Dof.WriteInfo("Bylo otevřeno okno 'O aplikaci'");
         }
 
         private void Preprocessor_FormClosed(object sender, FormClosedEventArgs e)
         {
             G.I.entry.WindowState = FormWindowState.Normal;
-            G.I.dof.WriteInfo("Okno generátoru bylo zavřeno");
+            G.I.Dof.WriteInfo("Okno generátoru bylo zavřeno");
         }
 
         #endregion
 
-        #region ToolTip metods
+        #region ToolTip handlers
 
         ToolTip originFilePathToolTip;
 
@@ -162,7 +162,7 @@ namespace ECDLManager
         {
             originFilePathToolTip = new ToolTip();
             originFilePathToolTip.IsBalloon = true;
-            originFilePathToolTip.Show("Dvojklik pro otevření dialogu na výběr zdroového souboru", (TextBox)sender, 20, -35, 10000);
+            originFilePathToolTip.Show("Dvojklik pro otevření dialogu na výběr zdrojového souboru", (TextBox)sender, 20, -35, 10000);
         }
 
         private void tb_filePath_MouseLeave(object sender, EventArgs e)

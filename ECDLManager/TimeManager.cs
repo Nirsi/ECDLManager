@@ -16,7 +16,7 @@ namespace ECDLManager
             {
                 times.Add(new MinSecTime(fs.examDuration));
             }
-            G.I.dof.WriteInfo("Byly vygenerovány všechny časy pomocí TimeManageru");
+            G.I.Dof.WriteInfo("Byly vygenerovány všechny časy pomocí TimeManageru");
         }
 
         internal void CountDown()

@@ -39,7 +39,7 @@ namespace ECDLManager
         /// <summary>
         /// Instance for debug window
         /// </summary>
-        public DebugOutputForm dof;
+        public DebugOutputForm Dof;
         /// <summary>
         /// Globalised instance Entry form 
         /// </summary>

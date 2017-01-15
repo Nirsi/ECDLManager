@@ -11,4 +11,4 @@ C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECD
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Release\ECDLManager.csproj.GenerateResource.Cache
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Release\ECDLManager.exe
 C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Release\ECDLManager.pdb
-C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\obj\Release\ECDLManager.csprojResolveAssemblyReference.cache
+C:\Users\Enrich\Documents\Visual Studio 2015\Projects\C#\WinForm\ECDLManager\ECDLManager\bin\Release\ecdl_ico.ico

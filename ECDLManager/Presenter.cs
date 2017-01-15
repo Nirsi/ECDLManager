@@ -16,6 +16,7 @@ namespace ECDLManager
         public Presenter()
         {
             InitializeComponent();
+            Icon = new Icon("ecdl_ico.ico");
         }
 
         private string tempListContent = string.Empty;
@@ -115,7 +116,7 @@ namespace ECDLManager
             else
             {
                 MessageBox.Show("Nebyl vybrán žádný vstupní soubor!", "Upozornění", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                G.I.dof.WriteWarning("Nebyl vybrán žádný soubor pro vstup");
+                G.I.Dof.WriteWarning("Nebyl vybrán žádný soubor pro vstup");
             }
         }
 
@@ -148,7 +149,7 @@ namespace ECDLManager
                     }
                     catch
                     {
-                        G.I.dof.WriteError("Načtená data neprošla skrze úvodní filtr");
+                        G.I.Dof.WriteError("Načtená data neprošla skrze úvodní filtr");
                         return false;
                     }
                 }
@@ -184,7 +185,7 @@ namespace ECDLManager
                 initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
-            G.I.dof.WriteInfo("byly vygenerovány labely s moduly účastníků");
+            G.I.Dof.WriteInfo("byly vygenerovány labely s moduly účastníků");
 
         }
 
@@ -207,7 +208,7 @@ namespace ECDLManager
                 initialDynTop += l.Height + 7;
             }
             initialDynTop = initialTop;
-            G.I.dof.WriteInfo("byly vygenerovány labely se jmény účastníků");
+            G.I.Dof.WriteInfo("byly vygenerovány labely se jmény účastníků");
         }
 
         private void GenerateTimeOfStudents()
@@ -235,7 +236,7 @@ namespace ECDLManager
             {
                 Controls.Add(l);
             }
-            G.I.dof.WriteInfo("byly vygenerovány labely s časy účastníků");
+            G.I.Dof.WriteInfo("byly vygenerovány labely s časy účastníků");
         }
 
         private void GenerateButtons()
@@ -264,7 +265,7 @@ namespace ECDLManager
                 Controls.Add(b);
             }
             initialDynTop = initialTop;
-            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pokračování");
+            G.I.Dof.WriteInfo("byly vygenerovány tlačítka pro pokračování");
 
             //Pause buttons
             for (int i = 0; i < tm.times.Count; i++)
@@ -289,7 +290,7 @@ namespace ECDLManager
                 Controls.Add(b);
             }
             initialDynTop = initialTop;
-            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
+            G.I.Dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
 
             //End buttons
             for (int i = 0; i < tm.times.Count; i++)
@@ -315,7 +316,7 @@ namespace ECDLManager
                 Controls.Add(b);
             }
             initialDynTop = initialTop;
-            G.I.dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
+            G.I.Dof.WriteInfo("byly vygenerovány tlačítka pro pozastavení");
 
         }
 
@@ -357,13 +358,13 @@ namespace ECDLManager
         private void bt_start_Click(object sender, EventArgs e)
         {
             tmr_seconds.Start();
-            G.I.dof.WriteInfo("Časovač spuštěn");
+            G.I.Dof.WriteInfo("Časovač spuštěn");
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
         {
             tmr_seconds.Stop();
-            G.I.dof.WriteInfo("Časovač zastaven");
+            G.I.Dof.WriteInfo("Časovač zastaven");
         }
 
         private void bt_reset_Click(object sender, EventArgs e)
@@ -380,7 +381,7 @@ namespace ECDLManager
                 pauseButtonRef[i].ForeColor = Color.Black;
             }
 
-            G.I.dof.WriteInfo("Byl proveden reset a obnovení do původníh hodnot");
+            G.I.Dof.WriteInfo("Byl proveden reset a obnovení do původníh hodnot");
         }
         
         //Labels click event handlers
@@ -388,7 +389,7 @@ namespace ECDLManager
         {
             Form about = new About();
             about.Show();
-            G.I.dof.WriteInfo("Okno 'O aplikaci' bylo otevřeno z " + this.Text);
+            G.I.Dof.WriteInfo("Okno 'O aplikaci' bylo otevřeno z " + this.Text);
         }
 
         private void lb_end_Click(object sender, EventArgs e)
@@ -396,7 +397,7 @@ namespace ECDLManager
             Label l = (sender as Label);
             l.Visible = false;
             l.Enabled = false;
-            G.I.dof.WriteInfo("Label " + l.Name + "byl skryt");
+            G.I.Dof.WriteInfo("Label " + l.Name + "byl skryt");
         }
 
         //Dynamic buttons event handler
@@ -412,7 +413,7 @@ namespace ECDLManager
                 {
                     pauseButtonRef[i].BackColor = SystemColors.Control;
                     pauseButtonRef[i].ForeColor = Color.Black;
-                    G.I.dof.WriteInfo("Bylo obnoveno odčítaní u účastníka s číslem #" + i);
+                    G.I.Dof.WriteInfo("Bylo obnoveno odčítaní u účastníka s číslem #" + i);
                 }
             }
             bt.BackColor = SystemColors.Control;
@@ -431,7 +432,7 @@ namespace ECDLManager
                     if (G.I.defaultHlm)
                     {
                         continueButtonRef[i].BackColor = Color.Green;
-                        G.I.dof.WriteInfo("Bylo pozastaveno odčítaní u účastníka s číslem #" + i);
+                        G.I.Dof.WriteInfo("Bylo pozastaveno odčítaní u účastníka s číslem #" + i);
                     }
                     else
                     {
@@ -463,7 +464,7 @@ namespace ECDLManager
         private void Presenter_FormClosed(object sender, FormClosedEventArgs e)
         {
             G.I.entry.WindowState = FormWindowState.Normal;
-            G.I.dof.WriteInfo("Okno " + Text + " bylo zavřeno");
+            G.I.Dof.WriteInfo("Okno " + Text + " bylo zavřeno");
 
             formatedStudents.Clear();
             nameLabelsRef.Clear();
@@ -471,7 +472,7 @@ namespace ECDLManager
             continueButtonRef.Clear();
             pauseButtonRef.Clear();
 
-            G.I.dof.WriteInfo("Všechna pole referencí vymazána");
+            G.I.Dof.WriteInfo("Všechna pole referencí vymazána");
         }
         #endregion
 

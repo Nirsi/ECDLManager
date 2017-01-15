@@ -14,7 +14,6 @@ namespace ECDLManager
         public About()
         {
             InitializeComponent();
-            //Text = string.Format(AssemblyTitle);
             lb_appName.Text = string.Format("{0}", AssemblyProduct);
             lb_version.Text = string.Format("Verze:  {0}", AssemblyVersion);
             lb_author.Text = string.Format("Autor:  {0}", AssemblyCopyright);
