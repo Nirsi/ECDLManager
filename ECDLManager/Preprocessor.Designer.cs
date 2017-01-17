@@ -253,11 +253,13 @@
             this.Controls.Add(this.tb_filePath);
             this.Controls.Add(this.tb_time);
             this.Controls.Add(this.tb_date);
+            this.Icon = ECDLManager.Properties.Resources.ecdl_ico;
             this.Name = "Preprocessor";
             this.Text = "ECDL Generátor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Preprocessor_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
+
 
         }
 

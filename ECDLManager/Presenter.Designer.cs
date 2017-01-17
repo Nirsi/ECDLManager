@@ -159,6 +159,7 @@
             this.Controls.Add(this.lb_date);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ECDLManager.Properties.Resources.ecdl_ico;
             this.Name = "Presenter";
             this.Text = "ECDL Test";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Presenter_FormClosed);

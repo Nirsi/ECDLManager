@@ -214,6 +214,7 @@
             this.ClientSize = new System.Drawing.Size(442, 160);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ECDLManager.Properties.Resources.ecdl_ico;
             this.Name = "Entry";
             this.Text = "ECDL";
             this.tabControl1.ResumeLayout(false);
@@ -241,5 +242,6 @@
         private System.Windows.Forms.Label lb_testOffsetY;
         private System.Windows.Forms.Label lb_testOffsetX;
         private System.Windows.Forms.NumericUpDown nud_contentBlockOffsetX;
+        
     }
 }

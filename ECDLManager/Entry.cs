@@ -16,7 +16,6 @@ namespace ECDLManager
         {
             InitializeComponent();
             G.I.Dof = new DebugOutputForm();
-            Icon = new Icon("ecdl_ico.ico");
         }
 
         #region Event handlers

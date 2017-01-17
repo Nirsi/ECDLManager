@@ -20,7 +20,6 @@ namespace ECDLManager
         public Preprocessor()
         {
             InitializeComponent();
-            Icon = new Icon("ecdl_ico.ico");
         }
 
 

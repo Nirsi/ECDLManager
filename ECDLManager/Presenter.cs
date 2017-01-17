@@ -16,7 +16,6 @@ namespace ECDLManager
         public Presenter()
         {
             InitializeComponent();
-            Icon = new Icon("ecdl_ico.ico");
         }
 
         private string tempListContent = string.Empty;
