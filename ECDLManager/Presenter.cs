@@ -55,7 +55,7 @@ namespace ECDLManager
             }
         }
 
-        private void killLine(int index)
+        private void killLine(int index, string status)
         {
             moduleLabelsRef[index].ForeColor = Color.Red;
             timeLabelsRef[index].ForeColor = Color.Red;
@@ -71,7 +71,7 @@ namespace ECDLManager
             endButtonRef[index].Enabled = false;
 
             tm.PauseTimer(index);
-            tm.KillTimer(index);
+            tm.KillTimer(index, status);
         }
 
         #endregion
@@ -333,7 +333,7 @@ namespace ECDLManager
                 timeLabelsRef[i].Text = tm.times[i].GetFormatedTime();
                 if(tm.times[i].GetFormatedTime() == "00:00")
                 {
-                    killLine(i);
+                    killLine(i, "Čas vypršel");
                 }
 
             }
@@ -456,7 +456,15 @@ namespace ECDLManager
             for (int i = 0; i < timeLabelsRef.Count; i++)
             {
                 if (timeLabelsRef[i].Name == bt.Name)
-                    tm.EndTimer(i);
+                {
+                    killLine(i, "Test ukončen");
+
+                    pauseButtonRef[i].BackColor = SystemColors.Control;
+                    pauseButtonRef[i].ForeColor = Color.Black;
+
+                    continueButtonRef[i].BackColor = SystemColors.Control;
+                    continueButtonRef[i].ForeColor = Color.Black;
+                }
             }
         }
 

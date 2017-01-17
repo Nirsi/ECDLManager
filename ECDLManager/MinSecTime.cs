@@ -11,6 +11,7 @@ namespace ECDLManager
         internal int min { get; private set; }
         internal int sec { get; private set; }
         internal bool isCountable, live = true;
+        internal string status;
 
         private int initialTime;
 
@@ -60,9 +61,10 @@ namespace ECDLManager
                 sec = 0;
         }
 
-        internal void Kill()
+        internal void Kill(string status)
         {
             live = false;
+            this.status = status;
         }
 
         internal void SetToMinimal()
@@ -83,7 +85,7 @@ namespace ECDLManager
                 return minZero + min + ":" + secZero + sec;
             }
             else
-                return "Čas vypršel";
+                return status;
             
         }
         

@@ -37,9 +37,9 @@ namespace ECDLManager
             times[index].Continue();
         }
 
-        internal void KillTimer(int index)
+        internal void KillTimer(int index, string withStatus)
         {
-            times[index].Kill();
+            times[index].Kill(withStatus);
         }
 
         internal void RestoreAll()
