@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ECDLManager
 {
@@ -17,10 +13,11 @@ namespace ECDLManager
             lb_appName.Text = string.Format("{0}", AssemblyProduct);
             lb_version.Text = string.Format("Verze:  {0}", AssemblyVersion);
             lb_author.Text = string.Format("Autor:  {0}", AssemblyCopyright);
-            lb_groupName.Text = string.Format("Skupina:  {0}", AssemblyCompany);
             tb_description.Text = AssemblyDescription;
             lb_license.Text = "Licence: CC BY-NC-SA 4.0";
             lb_projectLink.Text = "Odkaz na Projekt";
+            lb_feedback.Text = "Odkaz na zpětnou vazbu";
+            
         }
 
         #region Assembly info access
@@ -105,12 +102,17 @@ namespace ECDLManager
 
         private void lb_projectLink_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://goo.gl/eYuyNW");
+            Process.Start("https://goo.gl/eYuyNW");
         }
 
         private void lb_license_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+            Process.Start("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+        }
+
+        private void lb_feedback_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://goo.gl/forms/Nn3Z2ulnMJA4RR6V2");
         }
     }
 }
