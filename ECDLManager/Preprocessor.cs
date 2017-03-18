@@ -76,7 +76,7 @@ namespace ECDLManager
                         foreach (RawStudent rs in rawStudents)
                         {
                             //student's name, student's lastname, exam duration in minutes, module
-                            sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text + ";" + cb_module.SelectedItem);
+                            sw.WriteLine(rs.name + ";" + rs.lastname + ";" + tb_testDuration.Text + ";" + tb_module.Text);
                         }
                     }
                     G.I.Dof.WriteInfo("Formátovaná data byla vygenerována do " + fbd.SelectedPath + @"\formatedList.csv");
