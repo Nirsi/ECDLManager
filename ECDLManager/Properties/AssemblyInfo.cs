@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ECDL Manager")]
 [assembly: AssemblyDescription("Aplikace určená pro použití na zkouškách ECDL pro měření zbývajícího času jednotlivým účastníkům")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ellyr Group")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ECDL Manager")]
 [assembly: AssemblyCopyright("Jan Novák")]
 [assembly: AssemblyTrademark("")]
@@ -34,3 +35,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.5.0.0")]
 [assembly: AssemblyFileVersion("1.5.0.0")]
+[assembly: NeutralResourcesLanguage("cs")]
+

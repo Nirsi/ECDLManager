@@ -95,7 +95,7 @@
             this.lb_license.AutoSize = true;
             this.lb_license.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lb_license.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_license.Location = new System.Drawing.Point(76, 137);
+            this.lb_license.Location = new System.Drawing.Point(128, 137);
             this.lb_license.Name = "lb_license";
             this.lb_license.Size = new System.Drawing.Size(110, 22);
             this.lb_license.TabIndex = 6;
@@ -107,7 +107,7 @@
             this.lb_feedback.AutoSize = true;
             this.lb_feedback.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lb_feedback.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_feedback.Location = new System.Drawing.Point(71, 315);
+            this.lb_feedback.Location = new System.Drawing.Point(114, 315);
             this.lb_feedback.Name = "lb_feedback";
             this.lb_feedback.Size = new System.Drawing.Size(120, 22);
             this.lb_feedback.TabIndex = 7;

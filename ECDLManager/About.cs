@@ -14,9 +14,9 @@ namespace ECDLManager
             lb_version.Text = string.Format("Verze:  {0}", AssemblyVersion);
             lb_author.Text = string.Format("Autor:  {0}", AssemblyCopyright);
             tb_description.Text = AssemblyDescription;
-            lb_license.Text = "Licence: CC BY-NC-SA 4.0";
-            lb_projectLink.Text = "Odkaz na Projekt";
-            lb_feedback.Text = "Odkaz na zpětnou vazbu";
+            lb_license.Text = "Licence: MIT";
+            lb_projectLink.Text = "Stránka projektu";
+            lb_feedback.Text = "Zpětnou vazbu";
             
         }
 
@@ -107,7 +107,7 @@ namespace ECDLManager
 
         private void lb_license_Click(object sender, EventArgs e)
         {
-            Process.Start("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+            Process.Start("https://goo.gl/objUyr");
         }
 
         private void lb_feedback_Click(object sender, EventArgs e)
