@@ -107,7 +107,7 @@
             this.lb_feedback.AutoSize = true;
             this.lb_feedback.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lb_feedback.Font = new System.Drawing.Font("Consolas", 14.25F);
-            this.lb_feedback.Location = new System.Drawing.Point(114, 315);
+            this.lb_feedback.Location = new System.Drawing.Point(116, 315);
             this.lb_feedback.Name = "lb_feedback";
             this.lb_feedback.Size = new System.Drawing.Size(120, 22);
             this.lb_feedback.TabIndex = 7;

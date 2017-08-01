@@ -16,7 +16,10 @@ namespace ECDLManager
             tb_description.Text = AssemblyDescription;
             lb_license.Text = "Licence: MIT";
             lb_projectLink.Text = "Stránka projektu";
-            lb_feedback.Text = "Zpětnou vazbu";
+            lb_feedback.Text = "Zpětná vazba";
+            
+            // Deselection of text
+            tb_description.Select(0,0);
             
         }
 
