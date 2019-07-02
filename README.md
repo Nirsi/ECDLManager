@@ -1,5 +1,5 @@
 
-Tento repozitář je domovem pro původní aplikaci napsané v roce 2017 a obsahuje poměrně zastaralý kód, který je velice špatně rozšiřitelný a vážnější chyba by znamenala rozsáhlé změny, takže jsem se rozhodl ke kompletnímu přepsání. Tato aplikace zůstane stále přístupná, jen přejde do archivovaného stavu tj. nebude možné přidat další funkcionality, nebo opravit stávající a bude nahrazena novou. V případě dotazů, nápadů a přání pro funkce, které bych mohl přidat v nové verzi, mi prosím napište na enrich@silen.org
+Tento repozitář je domovem pro původní aplikaci napsané v roce 2017 a obsahuje poměrně zastaralý kód, který je velice špatně rozšiřitelný a vážnější chyba by znamenala rozsáhlé změny, takže jsem se rozhodl ke kompletnímu přepsání. Tato aplikace zůstane stále přístupná, jen přejde do archivovaného stavu tj. nebude možné přidat další funkcionality, nebo opravit stávající a bude nahrazena novou. V případě dotazů, nápadů a přání pro funkce, které bych mohl přidat v nové verzi, mi prosím napište na [Jan Novák](mailto:novak@silen.org?subject=[GitHub]%20ECDL%20Manager)
 ****
 
 
